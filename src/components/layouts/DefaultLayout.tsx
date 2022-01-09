@@ -36,7 +36,7 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="sticky" elevation={1} color="inherit">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography variant="h6" noWrap component="div">

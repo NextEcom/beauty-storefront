@@ -5,29 +5,23 @@ import TestAppProvider from "testUtils/TestAppProvider";
 
 describe("Home", () => {
   it("renders components", () => {
-    render(
+    const { container } = render(
       <TestAppProvider>
         <DefaultLayout>
-          <Index />
+          <Index
+            heroBanner={{
+              heading: "Heading",
+              subHeading: "Sub Heading",
+              text: "Text",
+              link: "https://example.com",
+              linkText: "Link Text",
+              backgroundImage: "https://example.com/image.jpg",
+            }}
+          />
         </DefaultLayout>
       </TestAppProvider>
     );
 
-    const heading = screen.getByRole("heading", {
-      name: /welcome!/i,
-    });
-
-    const button = screen.getByRole("button", {
-      name: /hi/i,
-    });
-
-    const changeLnBtn = screen.getByRole("button", {
-      name: /change language/i,
-    });
-
-    expect(changeLnBtn).toBeInTheDocument();
-
-    expect(heading).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });
