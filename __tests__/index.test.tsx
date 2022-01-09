@@ -1,9 +1,17 @@
 import { render, screen } from "@testing-library/react";
-import Home from "../src/pages/index";
+import Index from "@/pages/index";
+import DefaultLayout from "@/components/layouts/DefaultLayout";
+import TestAppProvider from "testUtils/TestAppProvider";
 
 describe("Home", () => {
   it("renders components", () => {
-    render(<Home />);
+    render(
+      <TestAppProvider>
+        <DefaultLayout>
+          <Index />
+        </DefaultLayout>
+      </TestAppProvider>
+    );
 
     const heading = screen.getByRole("heading", {
       name: /welcome!/i,
@@ -12,6 +20,12 @@ describe("Home", () => {
     const button = screen.getByRole("button", {
       name: /hi/i,
     });
+
+    const changeLnBtn = screen.getByRole("button", {
+      name: /change language/i,
+    });
+
+    expect(changeLnBtn).toBeInTheDocument();
 
     expect(heading).toBeInTheDocument();
     expect(button).toBeInTheDocument();
