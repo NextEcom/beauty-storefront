@@ -1,61 +1,23 @@
 import type { GetStaticPropsContext, NextPage } from "next";
 import pick from "lodash.pick";
-import { useTranslations } from "next-intl";
 import { Box } from "@mui/system";
-import { Stack, Typography, Button } from "@mui/material";
-import Link from "next/link";
-import { getHomepageHeroBanner } from "@/cms";
-import theme from "@/styles/theme";
-import { useRouter } from "next/router";
+
+import { getHomepageHeroBanner, getProductsByCollection } from "@/cms";
+import HeroBanner, { HeroBannerData } from "@/components/banners/HeroBanner";
+import ProductCollectionsTabs from "@/components/product/ProductCollectionsTabs";
+import { ProductData } from "@/components/product/ProductView";
 
 type Props = {
-  heroBanner: {
-    heading: string;
-    subHeading: string;
-    text: string;
-    link: string;
-    linkText: string;
-    backgroundImage: string;
-  };
+  heroBanner?: HeroBannerData;
+  productsByCollection?: { [key: string]: ProductData[] };
 };
 
-const Index: NextPage<Props> = ({ heroBanner }) => {
-  const t = useTranslations("Index");
-  const { locale } = useRouter();
+const Index: NextPage<Props> = ({ heroBanner, productsByCollection }) => {
   return (
     <Box>
-      {heroBanner && (
-        <Box
-          data-testid="homepage-hero-banner"
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          textAlign={"center"}
-          sx={{
-            height: "90vh",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundImage: `${heroBanner.backgroundImage}`,
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <Stack gap={theme.spacing(4)} width={`50%`} alignItems={"center"}>
-            <Typography variant="h4">{heroBanner.subHeading}</Typography>
-            <Typography variant="h3">{heroBanner.heading}</Typography>
-            <Typography variant="body1">{heroBanner.text}</Typography>
-            <Link href={heroBanner.link} locale={locale} passHref>
-              <Button
-                disableElevation
-                variant="contained"
-                sx={{
-                  borderRadius: 0,
-                }}
-              >
-                {heroBanner.linkText}
-              </Button>
-            </Link>
-          </Stack>
-        </Box>
+      <HeroBanner bannerData={heroBanner} />
+      {productsByCollection && (
+        <ProductCollectionsTabs productsByCollection={productsByCollection} />
       )}
     </Box>
   );
@@ -71,6 +33,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
       messages: pick(await import(`i18n/locales/${locale}.json`), "Index"),
       now: new Date().getTime(),
       heroBanner: await getHomepageHeroBanner(locale),
+      productsByCollection: await getProductsByCollection(locale),
     },
   };
 }

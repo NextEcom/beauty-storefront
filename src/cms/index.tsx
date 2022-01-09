@@ -1,4 +1,7 @@
-import { mockHeaderBannerData } from "testUtils/mocks/cms";
+import {
+  mockHeaderBannerData,
+  mockProductsByCollection,
+} from "testUtils/mocks/cms";
 
 export type HeroBannerData = {
   heading: string;
@@ -17,4 +20,12 @@ export async function getHomepageHeroBanner(
   }
 
   return mockHeaderBannerData["en"];
+}
+
+export async function getProductsByCollection(locale?: string) {
+  if (locale == "ru") {
+    return mockProductsByCollection["ru"];
+  }
+
+  return mockProductsByCollection["en"];
 }
