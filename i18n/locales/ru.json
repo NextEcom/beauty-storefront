@@ -2,5 +2,13 @@
   "Index": {
     "welcome": "Добро пожаловать!",
     "hi": "Привет"
+  },
+  "SignUp": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "password": "Пароль",
+    "phoneNumber": "Номер телефона",
+    "getOTP": "Получить код",
+    "createAccount": "Создать аккаунт"
   }
 }

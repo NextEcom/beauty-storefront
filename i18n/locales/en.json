@@ -2,5 +2,13 @@
   "Index": {
     "welcome": "Welcome!",
     "hi": "Hi"
+  },
+  "SignUp": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "password": "Password",
+    "phoneNumber": "Phone Number",
+    "getOTP": "Get OTP",
+    "createAccount": "Create Account"
   }
 }
