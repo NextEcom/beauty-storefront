@@ -8,7 +8,8 @@
     "lastName": "Last Name",
     "password": "Password",
     "phoneNumber": "Phone Number",
-    "getOTP": "Get OTP",
+    "enterOTP": "Enter OTP",
+    "verifyOTP": "Verify OTP",
     "createAccount": "Create Account"
   }
 }
