@@ -7,6 +7,8 @@ import HeroBanner, { HeroBannerData } from "@/components/banners/HeroBanner";
 import ProductCollectionsTabs from "@/components/product/ProductCollectionsTabs";
 import { ProductData } from "@/components/product/ProductView";
 import { SignUp } from "@/components/auth/SignUp";
+import getMockSignUpFormController from "testUtils/mocks/api";
+import { useRouter } from "next/router";
 
 type Props = {
   heroBanner?: HeroBannerData;
@@ -14,13 +16,17 @@ type Props = {
 };
 
 const Index: NextPage<Props> = ({ heroBanner, productsByCollection }) => {
+  const { locale, defaultLocale } = useRouter();
+  const signUpFormHandler = getMockSignUpFormController(
+    (locale || defaultLocale) as "en" | "ru"
+  );
   return (
     <Box>
       <HeroBanner bannerData={heroBanner} />
       {productsByCollection && (
         <ProductCollectionsTabs productsByCollection={productsByCollection} />
       )}
-      <SignUp />
+      <SignUp handler={signUpFormHandler} />
     </Box>
   );
 };

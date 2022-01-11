@@ -10,6 +10,8 @@
     "phoneNumber": "Phone Number",
     "enterOTP": "Enter OTP",
     "verifyOTP": "Verify OTP",
-    "createAccount": "Create Account"
+    "createAccount": "Create Account",
+    "phoneVerified": "Phone Number Verified",
+    "changeNumber": "Change Number"
   }
 }

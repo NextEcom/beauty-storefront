@@ -10,6 +10,8 @@
     "phoneNumber": "Номер телефона",
     "enterOTP": "Введите код",
     "verifyOTP": "Проверьте код",
-    "createAccount": "Создать аккаунт"
+    "createAccount": "Создать аккаунт",
+    "phoneVerified": "Номер телефона подтвержден",
+    "changeNumber": "Изменить номер"
   }
 }
