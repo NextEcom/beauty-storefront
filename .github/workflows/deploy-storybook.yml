@@ -17,8 +17,6 @@ jobs:
           cache: "yarn"
       - run: yarn install
       - run: yarn build-storybook
-      - run: apt-get update -y
-      - run: apt-get install zip -y
       - run: zip -r storybook_build.zip ./storybook-static
       - uses: appleboy/scp-action@master
         with: 
@@ -33,8 +31,6 @@ jobs:
           username: ${{ secrets.STORYBOOK_USER }}
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
-            apt-get update -y
-            apt-get install unzip -y
             cd ~/storybook
             unzip storybook_build.zip
             docker-compose -f docker-compose-storybook.yml up -d
