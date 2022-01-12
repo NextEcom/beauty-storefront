@@ -19,7 +19,7 @@ jobs:
       - run: yarn build-storybook
       - run: zip -r storybook_build.zip ./storybook-static
       - uses: appleboy/scp-action@master
-        with: 
+        with:
           host: ${{secrets.STORYBOOK_HOST}}
           username: ${{secrets.STORYBOOK_USER}}
           key: ${{ secrets.STORYBOOK_KEY }}
@@ -34,5 +34,3 @@ jobs:
             cd ~/storybook
             unzip storybook_build.zip
             docker-compose -f docker-compose-storybook.yml up -d
-      
-

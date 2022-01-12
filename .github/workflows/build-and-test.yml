@@ -14,5 +14,3 @@ jobs:
       - run: yarn build
       - run: yarn e2e:headless
       - run: yarn test
-
-          

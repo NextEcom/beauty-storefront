@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 
 services:
   web_server:
-   image: nginx:alpine
-   ports:
-    - "9090:80"
-   volumes:
-     - ./storybook-static:/usr/share/nginx/html
+    image: nginx:alpine
+    ports:
+      - "9090:80"
+    volumes:
+      - ./storybook-static:/usr/share/nginx/html
