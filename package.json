@@ -8,8 +8,8 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "e2e": "next build && start-server-and-test start http://localhost:3000 cypress",
-    "e2e:headless": "next build && start-server-and-test start http://localhost:3000 cypress:headless",
+    "e2e": "start-server-and-test start http://localhost:3000 cypress",
+    "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless",
     "test": "jest",
     "test:watch": "jest --watch"
   },
