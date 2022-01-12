@@ -7,7 +7,7 @@ import getMockSignUpFormController from "testUtils/mocks/api";
 import { useRouter } from "next/router";
 
 export default {
-  title: "SignUp",
+  title: "SignUpForm",
   component: SignUp,
 } as ComponentMeta<typeof SignUp>;
 
