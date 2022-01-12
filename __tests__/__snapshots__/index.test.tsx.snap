@@ -51,11 +51,14 @@ exports[`Home renders components 1`] = `
     class="MuiBox-root css-0"
   >
     <div
-      class="MuiBox-root css-1b12hgu"
+      class="MuiBox-root css-6yat2x"
       data-testid="homepage-hero-banner"
     >
       <div
-        class="css-c344yr-MuiStack-root"
+        class="MuiBox-root css-1l7c0cy"
+      />
+      <div
+        class="css-2cww9k-MuiStack-root"
       >
         <h4
           class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"

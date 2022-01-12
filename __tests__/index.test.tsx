@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Index from "@/pages/index";
-import DefaultLayout from "@/components/layouts/DefaultLayout";
+import { DefaultLayout } from "@/components/layouts/DefaultLayout";
 import TestAppProvider from "testUtils/TestAppProvider";
 
 describe("Home", () => {

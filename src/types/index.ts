@@ -1,3 +1,16 @@
+import { SxProps, Theme } from "@mui/material";
+
+export type HeroBannerData = {
+  heading?: string;
+  subHeading?: string;
+  text?: string;
+  link?: string;
+  linkText?: string;
+  containerStyle?: SxProps<Theme>;
+  overlayStyle?: SxProps<Theme>;
+  btnStyle?: SxProps<Theme>;
+};
+
 export type SignUpFormInput = {
   firstName: string;
   lastName: string;

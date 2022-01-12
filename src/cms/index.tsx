@@ -1,16 +1,8 @@
+import { HeroBannerData } from "@/types";
 import {
   mockHeaderBannerData,
   mockProductsByCollection,
 } from "testUtils/mocks/cms";
-
-export type HeroBannerData = {
-  heading: string;
-  subHeading: string;
-  text: string;
-  link: string;
-  linkText: string;
-  backgroundImage: string;
-};
 
 export async function getHomepageHeroBanner(
   locale = "en"

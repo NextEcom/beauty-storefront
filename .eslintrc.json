@@ -1,5 +1,8 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:storybook/recommended"
+  ],
   "plugins": [
     "testing-library"
   ],
@@ -16,6 +19,18 @@
       "extends": [
         "plugin:testing-library/react"
       ]
+    },
+    {
+      // or whatever matches stories specified in .storybook/main.js
+      "files": [
+        "*.stories.@(ts|tsx|js|jsx|mjs|cjs)"
+      ],
+      "rules": {
+        // example of overriding a rule
+        "storybook/hierarchy-separator": "error",
+        // example of disabling a rule
+        "storybook/default-exports": "off"
+      }
     }
   ]
 }

@@ -11,7 +11,7 @@ import { Translate } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 
-const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
+export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   const { push, pathname } = useRouter();
   const t = useTranslations();
 
@@ -78,4 +78,3 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
-export default DefaultLayout;

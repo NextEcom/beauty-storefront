@@ -3,12 +3,13 @@ import pick from "lodash.pick";
 import { Box } from "@mui/system";
 
 import { getHomepageHeroBanner, getProductsByCollection } from "@/cms";
-import HeroBanner, { HeroBannerData } from "@/components/banners/HeroBanner";
+import { HeroBanner } from "@/components/banners/HeroBanner";
 import ProductCollectionsTabs from "@/components/product/ProductCollectionsTabs";
 import { ProductData } from "@/components/product/ProductView";
 import { SignUp } from "@/components/auth/SignUp";
 import getMockSignUpFormController from "testUtils/mocks/api";
 import { useRouter } from "next/router";
+import { HeroBannerData } from "@/types";
 
 type Props = {
   heroBanner?: HeroBannerData;
@@ -22,7 +23,7 @@ const Index: NextPage<Props> = ({ heroBanner, productsByCollection }) => {
   );
   return (
     <Box>
-      <HeroBanner bannerData={heroBanner} />
+      {heroBanner && <HeroBanner bannerData={heroBanner} />}
       {productsByCollection && (
         <ProductCollectionsTabs productsByCollection={productsByCollection} />
       )}

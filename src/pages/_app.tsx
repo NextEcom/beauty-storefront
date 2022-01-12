@@ -6,7 +6,7 @@ import createEmotionCache from "@/styles/theme/createEmotionCache";
 import theme from "@/styles/theme";
 import I18nProvider from "i18n/I18nProvider";
 import "@fontsource/roboto";
-import DefaultLayout from "@/components/layouts/DefaultLayout";
+import { DefaultLayout } from "@/components/layouts/DefaultLayout";
 import { ReactNode } from "react";
 import { NextComponentType, NextPageContext } from "next";
 import defaultLayoutLocales from "i18n/locales/DefaultLayout.json";
