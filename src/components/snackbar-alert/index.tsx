@@ -1,4 +1,4 @@
-import { Snackbar, Alert, AlertColor } from "@mui/material";
+import { Alert, AlertColor, Snackbar } from "@mui/material";
 import { ComponentProps, ReactNode } from "react";
 
 export default function SnackbarAlert({
