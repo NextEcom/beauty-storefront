@@ -5,7 +5,7 @@ import { getMockSignUpFormController } from "testUtils/mocks/api";
 import { SignUp } from "./SignUp";
 
 export default {
-  title: "SignUpForm",
+  title: "SignUp",
   component: SignUp,
 } as ComponentMeta<typeof SignUp>;
 
