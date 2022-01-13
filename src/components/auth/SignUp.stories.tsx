@@ -1,10 +1,8 @@
-import React from "react";
-
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-
-import { SignUp } from "./SignUp";
-import getMockSignUpFormController from "testUtils/mocks/api";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useRouter } from "next/router";
+import React from "react";
+import { getMockSignUpFormController } from "testUtils/mocks/api";
+import { SignUp } from "./SignUp";
 
 export default {
   title: "SignUp",
