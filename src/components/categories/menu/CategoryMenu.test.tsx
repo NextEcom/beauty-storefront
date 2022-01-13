@@ -1,53 +1,45 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { getMockCategoriesData } from "testUtils/mocks/api";
 import TestAppProvider from "testUtils/TestAppProvider";
 import { CategoryMenu } from "./CategoryMenu";
 
 describe("Displays root level category items", () => {
   it("should render all the category items", async () => {
-    render(
-      <TestAppProvider>
-        <CategoryMenu
-          items={[
-            {
-              title: "Category 1",
-              href: "/category-1",
-            },
-            {
-              title: "Category 2",
-              href: "/category-2",
-            },
-            {
-              title: "Category 3",
-              href: "/category-3",
-              subMenu: [
-                {
-                  title: "Category 3.1",
-                  href: "/category-3.1",
-                },
-              ],
-            },
-          ]}
-        />
-      </TestAppProvider>
-    );
+    for (let locale of ["en", "ru"]) {
+      const items = getMockCategoriesData(locale as any);
+      const { unmount } = render(
+        <TestAppProvider locale={locale as any}>
+          <CategoryMenu items={items} />
+        </TestAppProvider>
+      );
 
-    const categoryItems = screen.getAllByRole("menuitem");
-    expect(categoryItems).toHaveLength(3);
-    expect(categoryItems[0]).toHaveTextContent("Category 1");
-    expect(categoryItems[0]).toHaveAttribute("href", "/category-1");
+      const categoryItems = await screen.findAllByRole("menuitem");
+      expect(categoryItems).toHaveLength(items.length);
 
-    expect(categoryItems[1]).toHaveTextContent("Category 2");
+      for (const catIndex in categoryItems) {
+        const itemElement = categoryItems[catIndex];
+        const item = items[catIndex];
 
-    expect(categoryItems[2]).toHaveTextContent("Category 3");
-    within(categoryItems[2]).getByLabelText("Expand Category 3");
+        expect(itemElement).toHaveTextContent(item.title);
+        expect(itemElement).toHaveAttribute("href", item.href);
 
-    const category3Wrapper = screen.getByTestId("Category 3");
-    expect(category3Wrapper).toHaveAttribute("aria-haspopup", "true");
+        if (item.subMenu?.length) {
+          const itemContainer = screen.getByTestId(
+            `item-container-${item.href}`
+          );
+          expect(itemContainer).toHaveAttribute("aria-haspopup", "true");
+          expect(
+            await screen.findByTestId(`submenu-of-${item.href}`)
+          ).not.toBeVisible();
+          userEvent.hover(itemContainer);
+          expect(
+            await screen.findByTestId(`submenu-of-${item.href}`)
+          ).toBeVisible();
+        }
+      }
 
-    expect(await screen.findByTestId("category-sub-menu")).not.toBeVisible();
-    await userEvent.hover(category3Wrapper);
-
-    expect(await screen.findByTestId("category-sub-menu")).toBeVisible();
+      unmount();
+    }
   });
 });

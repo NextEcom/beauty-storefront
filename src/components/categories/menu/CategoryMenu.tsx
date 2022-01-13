@@ -28,7 +28,7 @@ export function SubMenuDialog({
   const theme = useTheme();
   return (
     <Box
-      data-testid="category-sub-menu"
+      data-testid={`submenu-of-${item.href}`}
       position={"absolute"}
       display={isOpen ? "block" : "none"}
       sx={{
@@ -81,7 +81,7 @@ export function MainMenuItem({ item }: { item: CategoryMenuItem }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Box
-      data-testid={item.title}
+      data-testid={`item-container-${item.href}`}
       aria-haspopup={hasSubMenu ? "true" : "false"}
       key={item.href}
       onMouseEnter={() => setIsHovered(true)}
