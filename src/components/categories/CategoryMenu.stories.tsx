@@ -4,7 +4,7 @@ import { getMockCategoriesData } from "testUtils/mocks/api";
 import { CategoryMenu } from "./menu/CategoryMenu";
 
 export default {
-  title: "CategoryMenu",
+  title: "Category Menu",
   component: CategoryMenu,
 } as ComponentMeta<typeof CategoryMenu>;
 
