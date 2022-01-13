@@ -32,5 +32,5 @@ jobs:
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
             cd ~/storybook
-            unzip storybook_build.zip
+            unzip -o storybook_build.zip
             docker-compose -f docker-compose-storybook.yml up -d
