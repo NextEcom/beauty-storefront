@@ -1,15 +1,12 @@
-import type { GetStaticPropsContext, NextPage } from "next";
-import pick from "lodash.pick";
-import { Box } from "@mui/system";
-
 import { getHomepageHeroBanner, getProductsByCollection } from "@/cms";
 import { HeroBanner } from "@/components/banners/HeroBanner";
 import ProductCollectionsTabs from "@/components/product/ProductCollectionsTabs";
 import { ProductData } from "@/components/product/ProductView";
-import { SignUp } from "@/components/auth/SignUp";
-import getMockSignUpFormController from "testUtils/mocks/api";
-import { useRouter } from "next/router";
 import { HeroBannerData } from "@/types";
+import { Box } from "@mui/system";
+import pick from "lodash.pick";
+import type { GetStaticPropsContext, NextPage } from "next";
+import { useRouter } from "next/router";
 
 type Props = {
   heroBanner?: HeroBannerData;
@@ -18,16 +15,13 @@ type Props = {
 
 const Index: NextPage<Props> = ({ heroBanner, productsByCollection }) => {
   const { locale, defaultLocale } = useRouter();
-  const signUpFormHandler = getMockSignUpFormController(
-    (locale || defaultLocale) as "en" | "ru"
-  );
+
   return (
     <Box>
       {heroBanner && <HeroBanner bannerData={heroBanner} />}
       {productsByCollection && (
         <ProductCollectionsTabs productsByCollection={productsByCollection} />
       )}
-      <SignUp handler={signUpFormHandler} />
     </Box>
   );
 };

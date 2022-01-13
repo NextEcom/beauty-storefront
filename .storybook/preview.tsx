@@ -1,4 +1,9 @@
 import { ThemeProvider } from "@emotion/react";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { Translate } from "@mui/icons-material";
 import {
   CssBaseline,
   Stack,
@@ -8,13 +13,8 @@ import {
 import { Box } from "@mui/system";
 import * as nextImage from "next/image";
 import React, { useState } from "react";
-import TestAppProvider from "../testUtils/TestAppProvider";
 import theme from "../src/styles/theme";
-import { Translate } from "@mui/icons-material";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import TestAppProvider from "../testUtils/TestAppProvider";
 
 Object.defineProperty(nextImage, "default", {
   configurable: true,

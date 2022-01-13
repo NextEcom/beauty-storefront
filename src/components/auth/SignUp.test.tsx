@@ -4,12 +4,12 @@ import {
   waitForElementToBeRemoved,
   within,
 } from "@testing-library/react";
-import TestAppProvider from "testUtils/TestAppProvider";
-import { SignUp } from "./SignUp";
 import userEvent from "@testing-library/user-event";
 import en from "i18n/locales/en.json";
 import ru from "i18n/locales/ru.json";
-import getMockSignUpFormController from "testUtils/mocks/api";
+import { getMockSignUpFormController } from "testUtils/mocks/api";
+import TestAppProvider from "testUtils/TestAppProvider";
+import { SignUp } from "./SignUp";
 
 describe("Signup Flow", () => {
   let firstNameInput: HTMLInputElement | null = null;

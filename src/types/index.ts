@@ -11,6 +11,14 @@ export type HeroBannerData = {
   btnStyle?: SxProps<Theme>;
 };
 
+
+export type CategoryMenuItem = {
+  title: string;
+  href: string;
+  icon?: string;
+  subMenu?: CategoryMenuItem[];
+};
+
 export type SignUpFormInput = {
   firstName: string;
   lastName: string;
