@@ -6,6 +6,7 @@ import { styled } from "@mui/system";
 import Box from "@mui/system/Box";
 import Link from "next/link";
 import { useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 const StyledImg = styled("img")`
   height: 100%;
@@ -79,13 +80,18 @@ export function SubMenuDialog({
 export function MainMenuItem({ item }: { item: CategoryMenuItem }) {
   const hasSubMenu = Boolean(item.subMenu?.length);
   const [isHovered, setIsHovered] = useState(false);
+  const deboucedSetIsHovered = useDebouncedCallback(
+    (bool: boolean) => setIsHovered(bool),
+    200
+  );
+
   return (
     <Box
       data-testid={`item-container-${item.href}`}
       aria-haspopup={hasSubMenu ? "true" : "false"}
       key={item.href}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => deboucedSetIsHovered(true)}
+      onMouseLeave={() => deboucedSetIsHovered(false)}
     >
       <Link passHref href={item.href}>
         <MenuItem
