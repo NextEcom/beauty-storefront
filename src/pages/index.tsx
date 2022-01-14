@@ -5,6 +5,7 @@ import ProductCollectionsTabs from "@/components/product/ProductCollectionsTabs"
 import { ProductData } from "@/components/product/ProductView";
 import { AvailableLocale, HeroBannerData } from "@/types";
 import { Box } from "@mui/system";
+import { AppConfig } from "config/app";
 import type { GetStaticPropsContext, NextPage } from "next";
 import { useRouter } from "next/router";
 import { getMockSignUpFormController } from "testUtils/mocks/api";
@@ -31,7 +32,9 @@ const Index: NextPage<Props> = ({ heroBanner, productsByCollection }) => {
 };
 
 // pages/index.js
-export async function getStaticProps({ locale = "en" }: GetStaticPropsContext) {
+export async function getStaticProps({
+  locale = AppConfig.defaultLocale,
+}: GetStaticPropsContext) {
   const localesJson = (await import(`i18n/locales.json`)).default;
   return {
     props: {
@@ -40,8 +43,10 @@ export async function getStaticProps({ locale = "en" }: GetStaticPropsContext) {
       // the desired one based on the `locale` received from Next.js.
       messages: localesJson[locale as keyof typeof localesJson],
       now: new Date().getTime(),
-      heroBanner: await getHomepageHeroBanner(locale),
-      productsByCollection: await getProductsByCollection(locale),
+      heroBanner: await getHomepageHeroBanner(locale as AvailableLocale),
+      productsByCollection: await getProductsByCollection(
+        locale as AvailableLocale
+      ),
     },
   };
 }

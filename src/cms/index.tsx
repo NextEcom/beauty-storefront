@@ -6,7 +6,7 @@ import {
 } from "testUtils/mocks/cms";
 
 export async function getHomepageHeroBanner(
-  locale = AppConfig.defaultLocale
+  locale: AvailableLocale = AppConfig.defaultLocale
 ): Promise<HeroBannerData> {
   if (locale == AppConfig.Locale.ru) {
     return mockHeaderBannerData["ru"];
