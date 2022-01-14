@@ -3,16 +3,9 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { Translate } from "@mui/icons-material";
-import {
-  CssBaseline,
-  Stack,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
-import { Box } from "@mui/system";
+import { CssBaseline } from "@mui/material";
 import * as nextImage from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { AppConfig } from "../config/app";
 import theme from "../src/styles/theme";
 import TestAppProvider from "../testUtils/TestAppProvider";
@@ -34,6 +27,21 @@ Object.defineProperty(nextImage, "default", {
   },
 });
 
+export const globalTypes = {
+  locale: {
+    name: "Locale",
+    description: "Internationalization locale",
+    defaultValue: "en",
+    toolbar: {
+      icon: "globe",
+      items: [
+        { value: "en", right: "🇺🇸", title: "English" },
+        { value: "ru", right: "🇷🇺", title: "Русский" },
+      ],
+    },
+  },
+};
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -45,25 +53,12 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story) => {
-    const [locale, setLocale] = useState(AppConfig.defaultLocale);
-    const toggleLocale = () => {
-      setLocale(locale === Locales.en ? Locales.ru : Locales.en);
-    };
+  (Story, context) => {
     return (
-      <TestAppProvider locale={locale as any}>
+      <TestAppProvider locale={context.globals.locale as any}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Stack flexDirection={"row"} alignItems={"center"} gap={2}>
-            <Translate />
-            <ToggleButtonGroup value={locale} onChange={toggleLocale}>
-              <ToggleButton value={Locales.en}>en</ToggleButton>
-              <ToggleButton value={Locales.ru}>ru</ToggleButton>
-            </ToggleButtonGroup>
-          </Stack>
-          <Box marginTop={6}>
-            <Story />
-          </Box>
+          <Story />
         </ThemeProvider>
       </TestAppProvider>
     );

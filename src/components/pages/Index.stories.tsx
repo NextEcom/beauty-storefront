@@ -1,4 +1,6 @@
+import { AvailableLocale } from "@/types";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { useRouter } from "next/router";
 import {
   mockHeaderBannerData,
   mockProductsByCollection,
@@ -10,13 +12,16 @@ export default {
   component: IndexPage,
 } as ComponentMeta<typeof IndexPage>;
 
-const Template: ComponentStory<typeof IndexPage> = (args) => (
-  <IndexPage {...args} />
-);
+const Template: ComponentStory<typeof IndexPage> = (args) => {
+  const { locale } = useRouter();
 
-export const IndexEnglish = Template.bind({});
-
-IndexEnglish.args = {
-  heroBanner: mockHeaderBannerData["en"],
-  productsByCollection: mockProductsByCollection["en"],
+  return (
+    <IndexPage
+      {...args}
+      heroBanner={mockHeaderBannerData[locale as AvailableLocale]}
+      productsByCollection={mockProductsByCollection[locale as AvailableLocale]}
+    />
+  );
 };
+
+export const IndexPageView = Template.bind({});
