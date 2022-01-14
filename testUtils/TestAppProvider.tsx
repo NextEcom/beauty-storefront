@@ -1,30 +1,24 @@
-import { ReactNode } from "react";
-import defaultLayoutLocales from "i18n/locales/DefaultLayout.json";
-import enLocales from "i18n/locales/en.json";
-import ruLocales from "i18n/locales/ru.json";
+import { AvailableLocale } from "@/types";
+import { AppConfig } from "config/app";
 import I18nProvider from "i18n/I18nProvider";
-import { RouterContext } from "next/dist/shared/lib/router-context";
+import localesJson from "i18n/locales.json";
 import nextRouterMock from "next-router-mock";
+import { RouterContext } from "next/dist/shared/lib/router-context";
+import { ReactNode } from "react";
 
 export default function TestAppProvider({
-  locale = "en",
+  locale = AppConfig.defaultLocale,
   children,
 }: {
-  locale?: "en" | "ru";
+  locale?: AvailableLocale;
   children: ReactNode;
 }) {
   nextRouterMock.locale = locale;
-  nextRouterMock.locales = ["en", "ru"];
-  nextRouterMock.defaultLocale = "en";
+  nextRouterMock.locales = AppConfig.AvailableLocales;
+  nextRouterMock.defaultLocale = AppConfig.defaultLocale;
   return (
     <RouterContext.Provider value={nextRouterMock}>
-      <I18nProvider
-        locale={locale}
-        messages={{
-          ...defaultLayoutLocales["en"],
-          ...(locale == "en" ? enLocales : ruLocales),
-        }}
-      >
+      <I18nProvider locale={locale} messages={localesJson[locale]}>
         {children}
       </I18nProvider>
     </RouterContext.Provider>

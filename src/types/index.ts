@@ -1,4 +1,7 @@
 import { SxProps, Theme } from "@mui/material";
+import { AppConfig } from "config/app";
+
+export type AvailableLocale = keyof typeof AppConfig.Locale;
 
 export type HeroBannerData = {
   heading?: string;
@@ -10,7 +13,6 @@ export type HeroBannerData = {
   overlayStyle?: SxProps<Theme>;
   btnStyle?: SxProps<Theme>;
 };
-
 
 export type CategoryMenuItem = {
   title: string;

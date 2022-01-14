@@ -13,8 +13,11 @@ import {
 import { Box } from "@mui/system";
 import * as nextImage from "next/image";
 import React, { useState } from "react";
+import { AppConfig } from "../config/app";
 import theme from "../src/styles/theme";
 import TestAppProvider from "../testUtils/TestAppProvider";
+
+const Locales = AppConfig.Locale;
 
 Object.defineProperty(nextImage, "default", {
   configurable: true,
@@ -43,9 +46,9 @@ export const parameters = {
 
 export const decorators = [
   (Story) => {
-    const [locale, setLocale] = useState("en");
+    const [locale, setLocale] = useState(AppConfig.defaultLocale);
     const toggleLocale = () => {
-      setLocale(locale === "en" ? "ru" : "en");
+      setLocale(locale === Locales.en ? Locales.ru : Locales.en);
     };
     return (
       <TestAppProvider locale={locale as any}>
@@ -53,9 +56,9 @@ export const decorators = [
           <CssBaseline />
           <Stack flexDirection={"row"} alignItems={"center"} gap={2}>
             <Translate />
-            <ToggleButtonGroup value={locale} onChange={toggleLocale} exclusive>
-              <ToggleButton value={"en"}>en</ToggleButton>
-              <ToggleButton value={"ru"}>ru</ToggleButton>
+            <ToggleButtonGroup value={locale} onChange={toggleLocale}>
+              <ToggleButton value={Locales.en}>en</ToggleButton>
+              <ToggleButton value={Locales.ru}>ru</ToggleButton>
             </ToggleButtonGroup>
           </Stack>
           <Box marginTop={6}>

@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { AvailableLocale } from "@/types";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getMockCategoriesData } from "testUtils/mocks/api";
 import TestAppProvider from "testUtils/TestAppProvider";
@@ -6,8 +7,10 @@ import { CategoryMenu } from "./CategoryMenu";
 
 describe("Displays root level category items", () => {
   it("should render all the category items", async () => {
-    for (let locale of ["en", "ru"]) {
-      const items = getMockCategoriesData(locale as any);
+    jest.useFakeTimers();
+
+    for (let locale of ["en", "ru"] as AvailableLocale[]) {
+      const items = getMockCategoriesData(locale);
       const { unmount } = render(
         <TestAppProvider locale={locale as any}>
           <CategoryMenu items={items} />
@@ -32,7 +35,12 @@ describe("Displays root level category items", () => {
           expect(
             await screen.findByTestId(`submenu-of-${item.href}`)
           ).not.toBeVisible();
+
           userEvent.hover(itemContainer);
+          act(() => {
+            jest.advanceTimersByTime(300);
+          });
+
           expect(
             await screen.findByTestId(`submenu-of-${item.href}`)
           ).toBeVisible();

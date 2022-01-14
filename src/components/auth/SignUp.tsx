@@ -53,7 +53,7 @@ export function EnterOTPDialog({
   onVerify = () => null,
 }: EnterOTPDialogProps) {
   const [otp, setOTP] = useState("");
-  const t = useTranslations("SignUp");
+  const t = useTranslations("SignUpForm");
 
   useEffect(() => {
     if (isOpen) {
@@ -119,7 +119,7 @@ export function SignUp({
     type: AlertColor;
     message: string;
   } | null>(null);
-  const t = useTranslations("SignUp");
+  const t = useTranslations("SignUpForm");
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormInput({

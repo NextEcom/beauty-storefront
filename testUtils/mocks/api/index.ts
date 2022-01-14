@@ -1,13 +1,15 @@
 import {
+  AvailableLocale,
   CategoryMenuItem,
   Result,
   SignUpFormController,
   SignUpFormInput,
   User,
 } from "@/types";
+import { AppConfig } from "config/app";
 
 export const getMockSignUpFormController: (
-  locale: "en" | "ru"
+  locale: AvailableLocale
 ) => SignUpFormController = (locale) => {
   const verifyOTP = async (otp: string): Promise<Result<boolean, string>> => {
     if (otp === "123456") {
@@ -66,9 +68,9 @@ export const getMockSignUpFormController: (
 };
 
 export const getMockCategoriesData: (
-  locale: "en" | "ru"
+  locale: AvailableLocale
 ) => CategoryMenuItem[] = (locale) => {
-  if (locale === "en") {
+  if (locale == AppConfig.Locale.en) {
     return [
       {
         title: "Fashion",

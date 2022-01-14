@@ -1,15 +1,17 @@
-import * as React from "react";
+import { AvailableLocale } from "@/types";
+import { Translate } from "@mui/icons-material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Translate } from "@mui/icons-material";
-import { useRouter } from "next/router";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { AppConfig } from "config/app";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
+import * as React from "react";
 
 export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   const { push, pathname } = useRouter();
@@ -27,10 +29,10 @@ export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
     setAnchorElLang(null);
   };
 
-  const setLanguage = (lang: string) => {
+  const setLocale = (locale: AvailableLocale) => {
     return () => {
       handleCloseLanguageMenu();
-      push(pathname, pathname, { locale: lang });
+      push(pathname, pathname, { locale });
     };
   };
 
@@ -46,7 +48,7 @@ export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
 
             <Box sx={{ flexGrow: 0 }}>
               <IconButton
-                aria-label={t("change_language")}
+                aria-label={t("Common.change_language")}
                 sx={{ mr: "25px" }}
                 onClick={handleOpenLanguageMenu}
                 color="inherit"
@@ -67,8 +69,11 @@ export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
                 open={Boolean(anchorElLang)}
                 sx={{ mt: `45px` }}
               >
-                <MenuItem onClick={setLanguage("en")}>English</MenuItem>
-                <MenuItem onClick={setLanguage("ru")}>Russian</MenuItem>
+                {AppConfig.AvailableLocales.map((locale) => (
+                  <MenuItem key={locale} onClick={setLocale(locale)}>
+                    {AppConfig.LocalesNames[locale]}
+                  </MenuItem>
+                ))}
               </Menu>
             </Box>
           </Toolbar>

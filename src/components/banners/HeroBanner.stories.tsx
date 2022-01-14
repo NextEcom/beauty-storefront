@@ -1,3 +1,4 @@
+import { AvailableLocale } from "@/types";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useRouter } from "next/router";
 import React from "react";
@@ -11,6 +12,6 @@ export default {
 
 export const HeroBannerView: ComponentStory<typeof HeroBanner> = () => {
   const { locale } = useRouter();
-  const bannerData = mockHeaderBannerData[locale as "en" | "ru"];
+  const bannerData = mockHeaderBannerData[locale as AvailableLocale];
   return <HeroBanner bannerData={bannerData} />;
 };

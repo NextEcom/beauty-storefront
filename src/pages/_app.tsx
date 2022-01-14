@@ -1,15 +1,14 @@
-import type { AppProps } from "next/app";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { CacheProvider, EmotionCache } from "@emotion/react";
-import createEmotionCache from "@/styles/theme/createEmotionCache";
-import theme from "@/styles/theme";
-import I18nProvider from "i18n/I18nProvider";
-import "@fontsource/roboto";
 import { DefaultLayout } from "@/components/layouts/DefaultLayout";
-import { ReactNode } from "react";
+import theme from "@/styles/theme";
+import createEmotionCache from "@/styles/theme/createEmotionCache";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import "@fontsource/roboto";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import I18nProvider from "i18n/I18nProvider";
 import { NextComponentType, NextPageContext } from "next";
-import defaultLayoutLocales from "i18n/locales/DefaultLayout.json";
+import type { AppProps } from "next/app";
+import { ReactNode } from "react";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -28,8 +27,6 @@ function MyApp(props: MyAppProps) {
     router,
   } = props;
 
-  const toUseDefaultLayout = !Component.getLayout;
-
   const getLayout =
     Component.getLayout ||
     ((page: ReactNode) => <DefaultLayout>{page}</DefaultLayout>);
@@ -38,17 +35,7 @@ function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <I18nProvider
-          messages={{
-            ...(toUseDefaultLayout
-              ? defaultLayoutLocales[
-                  router.locale as keyof typeof defaultLayoutLocales
-                ]
-              : {}),
-            ...messages,
-          }}
-          now={now}
-        >
+        <I18nProvider messages={messages} now={now}>
           {getLayout(<Component {...restPageProps} />)}
         </I18nProvider>
       </ThemeProvider>

@@ -1,3 +1,4 @@
+import { AvailableLocale } from "@/types";
 import {
   render,
   screen,
@@ -5,11 +6,16 @@ import {
   within,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import en from "i18n/locales/en.json";
-import ru from "i18n/locales/ru.json";
+import localesJson from "i18n/locales.json";
 import { getMockSignUpFormController } from "testUtils/mocks/api";
 import TestAppProvider from "testUtils/TestAppProvider";
 import { SignUp } from "./SignUp";
+
+function getSignUpLocale(locale: AvailableLocale) {
+  return locale === "en"
+    ? localesJson["en"].SignUpForm
+    : localesJson["ru"].SignUpForm;
+}
 
 describe("Signup Flow", () => {
   let firstNameInput: HTMLInputElement | null = null;
@@ -20,8 +26,8 @@ describe("Signup Flow", () => {
 
   beforeEach(() => {});
   it("should have all the form elements in en and ru locale", () => {
-    (["en", "ru"] as ["en", "ru"]).forEach((locale) => {
-      const signUpLocale = locale === "en" ? en["SignUp"] : ru["SignUp"];
+    (["en", "ru"] as AvailableLocale[]).forEach((locale) => {
+      const signUpLocale = getSignUpLocale(locale);
       render(
         <TestAppProvider locale={locale}>
           <SignUp />
@@ -53,13 +59,13 @@ describe("Signup Flow", () => {
   });
 
   it("valid input flow: en & ru", async () => {
-    for (const locale of ["en", "ru"]) {
+    for (const locale of ["en", "ru"] as AvailableLocale[]) {
       render(
-        <TestAppProvider locale={locale as any}>
+        <TestAppProvider locale={locale}>
           <SignUp handler={getMockSignUpFormController(locale as any)} />
         </TestAppProvider>
       );
-      const signUpLocale = locale === "en" ? en["SignUp"] : ru["SignUp"];
+      const signUpLocale = getSignUpLocale(locale);
 
       firstNameInput = screen.getByLabelText<HTMLInputElement>(
         RegExp(signUpLocale.firstName, "i")
@@ -114,7 +120,7 @@ describe("Signup Flow", () => {
   });
 
   it("invalid input flow: en & ru", async () => {
-    for (const locale of ["en", "ru"]) {
+    for (const locale of ["en", "ru"] as AvailableLocale[]) {
       const handler = getMockSignUpFormController(locale as "en" | "ru");
 
       render(
@@ -122,7 +128,7 @@ describe("Signup Flow", () => {
           <SignUp handler={handler} />
         </TestAppProvider>
       );
-      const signUpLocale = locale === "en" ? en["SignUp"] : ru["SignUp"];
+      const signUpLocale = getSignUpLocale(locale);
 
       firstNameInput = screen.getByLabelText<HTMLInputElement>(
         RegExp(signUpLocale.firstName, "i")
@@ -166,14 +172,14 @@ describe("Signup Flow", () => {
   });
 
   it("option to change number: en & ru", async () => {
-    for (const locale of ["en", "ru"]) {
+    for (const locale of ["en", "ru"] as AvailableLocale[]) {
       render(
         <TestAppProvider locale={locale as any}>
           <SignUp handler={getMockSignUpFormController(locale as any)} />
         </TestAppProvider>
       );
 
-      const signUpLocale = locale === "en" ? en["SignUp"] : ru["SignUp"];
+      const signUpLocale = getSignUpLocale(locale);
 
       firstNameInput = screen.getByLabelText<HTMLInputElement>(
         RegExp(signUpLocale.firstName, "i")

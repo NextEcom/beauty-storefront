@@ -1,0 +1,34 @@
+{
+  "en": {
+    "Common": {
+      "change_language": "Change Language"
+    },
+    "SignUpForm": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "password": "Password",
+      "phoneNumber": "Phone Number",
+      "enterOTP": "Enter OTP",
+      "verifyOTP": "Verify OTP",
+      "createAccount": "Create Account",
+      "phoneVerified": "Phone Number Verified",
+      "changeNumber": "Change Number"
+    }
+  },
+  "ru": {
+    "Common": {
+      "change_language": "Изменить язык"
+    },
+    "SignUpForm": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "password": "Пароль",
+      "phoneNumber": "Номер телефона",
+      "enterOTP": "Введите код",
+      "verifyOTP": "Проверьте код",
+      "createAccount": "Создать аккаунт",
+      "phoneVerified": "Номер телефона подтвержден",
+      "changeNumber": "Изменить номер"
+    }
+  }
+}
