@@ -1,3 +1,5 @@
+import { AvailableLocale, ProductsDataByCollection } from "@/types";
+
 export const mockHeaderBannerData = {
   ru: {
     heading: `Натуральная косметика ручной работы`,
@@ -165,7 +167,9 @@ const ruProducts = [
   },
 ];
 
-export const mockProductsByCollection = {
+export const mockProductsByCollection: {
+  [L in AvailableLocale]: ProductsDataByCollection;
+} = {
   en: {
     "Featured Products": [...enProducts],
     "New Arrivals": [...enProducts],

@@ -1,11 +1,13 @@
 import { DefaultLayout } from "@/components/layouts/DefaultLayout";
 import theme from "@/styles/theme";
 import createEmotionCache from "@/styles/theme/createEmotionCache";
+import { AvailableLocale } from "@/types";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import "@fontsource/roboto";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import I18nProvider from "i18n/I18nProvider";
+import localesJson from "i18n/locales/common.json";
 import { NextComponentType, NextPageContext } from "next";
 import type { AppProps } from "next/app";
 import { ReactNode } from "react";
@@ -35,7 +37,15 @@ function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <I18nProvider messages={messages} now={now}>
+        <I18nProvider
+          messages={{
+            ...localesJson[
+              (router.locale || router.defaultLocale) as AvailableLocale
+            ],
+            ...messages,
+          }}
+          now={now}
+        >
           {getLayout(<Component {...restPageProps} />)}
         </I18nProvider>
       </ThemeProvider>

@@ -1,49 +1,8 @@
-import { SxProps, Theme } from "@mui/material";
-import { AppConfig } from "config/app";
-
-export type AvailableLocale = keyof typeof AppConfig.Locale;
-
-export type HeroBannerData = {
-  heading?: string;
-  subHeading?: string;
-  text?: string;
-  link?: string;
-  linkText?: string;
-  containerStyle?: SxProps<Theme>;
-  overlayStyle?: SxProps<Theme>;
-  btnStyle?: SxProps<Theme>;
-};
-
-export type CategoryMenuItem = {
-  title: string;
-  href: string;
-  icon?: string;
-  subMenu?: CategoryMenuItem[];
-};
-
-export type SignUpFormInput = {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  password: string;
-};
-
-export interface User extends SignUpFormInput {
-  id: string;
-}
-
-export type Result<T, E> =
-  | { status: "success"; data: T }
-  | { status: "error"; error: E };
-
-export interface SignUpFormController {
-  verifyOTP(otp: string): Promise<Result<boolean, string>>;
-  signUp(
-    inputs: SignUpFormInput
-  ): Promise<
-    Result<
-      User,
-      { fieldErrors: Partial<SignUpFormInput>; errorMessage: string }
-    >
-  >;
-}
+export * from "./app";
+export * from "./auth";
+export * from "./categories";
+export * from "./cms";
+export * from "./controllers";
+export * from "./orders";
+export * from "./products";
+export * from "./user";

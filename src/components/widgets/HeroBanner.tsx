@@ -1,6 +1,5 @@
-import theme from "@/styles/theme";
 import { HeroBannerData } from "@/types";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -10,6 +9,7 @@ export type HeroBannerProps = {
 
 export function HeroBanner({ bannerData: data }: HeroBannerProps) {
   const { locale } = useRouter();
+  const theme = useTheme();
   return data ? (
     <Box
       data-testid="homepage-hero-banner"

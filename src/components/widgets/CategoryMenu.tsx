@@ -1,4 +1,4 @@
-import { NavLink } from "@/components/common/NavLink";
+import { NavLink } from "@/components/base/NavLink";
 import { CategoryMenuItem } from "@/types";
 import { ChevronRight } from "@mui/icons-material";
 import { Card, Grid, MenuItem, Typography, useTheme } from "@mui/material";

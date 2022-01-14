@@ -1,7 +1,7 @@
 import { AvailableLocale } from "@/types";
 import { AppConfig } from "config/app";
 import I18nProvider from "i18n/I18nProvider";
-import localesJson from "i18n/locales.json";
+import localesJson from "i18n/locales/common.json";
 import nextRouterMock from "next-router-mock";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 import { ReactNode } from "react";

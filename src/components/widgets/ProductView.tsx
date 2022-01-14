@@ -1,17 +1,8 @@
+import { Product } from "@/types/products";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 
-export type ProductData = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  currencyCode: string;
-  currencySymbol: string;
-  thumbnail: string;
-};
-
-export default function ProductView({ data }: { data: ProductData }) {
+export default function ProductView({ data }: { data: Product }) {
   const theme = useTheme();
   return (
     <Box

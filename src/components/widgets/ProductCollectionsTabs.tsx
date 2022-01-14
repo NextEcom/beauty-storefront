@@ -1,7 +1,8 @@
-import { Box, Container, Tabs, Tab, useTheme } from "@mui/material";
+import { ProductsDataByCollection } from "@/types";
+import { Box, Container, Tab, Tabs, useTheme } from "@mui/material";
 import { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
-import ProductView, { ProductData } from "./ProductView";
+import ProductView from "./ProductView";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -34,7 +35,7 @@ function a11yProps(index: number) {
 }
 
 type Props = {
-  productsByCollection: { [key: string]: ProductData[] };
+  productsByCollection: ProductsDataByCollection;
 };
 
 export default function TabbedCollectionProducts({

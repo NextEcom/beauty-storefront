@@ -26,6 +26,7 @@ export default {
       "emotion-theming": toPath("node_modules/@emotion/react"),
       "@/components": toPath("src/components"),
       "@/styles": toPath("src/styles"),
+      "@/pages": toPath("src/pages"),
     };
     config.plugins.push(
       new webpack.DefinePlugin({
