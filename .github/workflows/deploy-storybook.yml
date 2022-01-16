@@ -35,3 +35,6 @@ jobs:
           script: |
             cd ~/storybook
             unzip -o storybook_build.zip -d ~/mysites/www/sb-beauty-store
+            cd ~/mysites/www/sb-beauty-store
+            mv storybook-static/* .
+            rm -rf storybook-static
