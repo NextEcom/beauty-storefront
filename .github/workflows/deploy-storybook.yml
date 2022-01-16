@@ -34,8 +34,4 @@ jobs:
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
             cd ~/storybook
-            mv docker-compose-storybook.yml docker-compose.yml
-            docker-compose down
-            rm -rf storybook-static
-            unzip -o storybook_build.zip
-            docker-compose up -d
+            unzip -o storybook_build.zip -d ~/mysites/www/sb-beauty-store
