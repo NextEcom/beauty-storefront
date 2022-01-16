@@ -9,7 +9,7 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { IndexPage } from "./IndexPage";
 
 export default {
-  title: "Page Stories/Index",
+  title: "Page Stories/ Index",
   component: IndexPage,
 } as ComponentMeta<typeof IndexPage>;
 
