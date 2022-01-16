@@ -1,16 +1,12 @@
-import { ThemeProvider } from "@emotion/react";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import * as nextImage from "next/image";
 import React from "react";
-import { AppConfig } from "../config/app";
 import theme from "../src/styles/theme";
 import TestAppProvider from "../testUtils/TestAppProvider";
-
-const Locales = AppConfig.Locale;
 
 Object.defineProperty(nextImage, "default", {
   configurable: true,
