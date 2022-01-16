@@ -1,3 +1,4 @@
+import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -53,8 +54,10 @@ export const decorators = [
     return (
       <TestAppProvider locale={context.globals.locale as any}>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Story />
+          <EmotionThemeProvider theme={theme}>
+            <CssBaseline />
+            <Story />
+          </EmotionThemeProvider>
         </ThemeProvider>
       </TestAppProvider>
     );

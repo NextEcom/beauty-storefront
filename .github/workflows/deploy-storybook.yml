@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - dev
-    paths: ["src/**"]
+    paths: ["src/**", ".storybook/**"]
 
 jobs:
   buid-and-deploy:
