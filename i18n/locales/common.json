@@ -1,7 +1,10 @@
 {
   "en": {
     "Common": {
-      "change_language": "Change Language"
+      "search": "Search",
+      "searchForProducts": "Search for products",
+      "clearInput": "Clear input",
+      "searchSuggestions": "Search suggestions"
     },
     "SignUpForm": {
       "firstName": "First Name",
@@ -17,7 +20,10 @@
   },
   "ru": {
     "Common": {
-      "change_language": "Изменить язык"
+      "search": "Поиск",
+      "searchForProducts": "Поиск продуктов",
+      "clearInput": "Очистить ввод",
+      "searchSuggestions": "Подсказки поиска"
     },
     "SignUpForm": {
       "firstName": "Имя",

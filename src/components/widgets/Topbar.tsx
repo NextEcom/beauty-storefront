@@ -1,3 +1,4 @@
+import { AvailableLocale } from "@/types";
 import { CallOutlined, ExpandMore, MailOutlined } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { AppConfig, LayoutConstants } from "config/app";
@@ -78,6 +79,7 @@ export function Topbar({
                 size="small"
                 color="inherit"
               >
+                {AppConfig.LocalesFlags[locale as AvailableLocale]}{" "}
                 {locale?.toUpperCase()}
                 <ExpandMore fontSize="inherit" />
               </Button>
@@ -92,6 +94,7 @@ export function Topbar({
                     })
                   }
                 >
+                  {AppConfig.LocalesFlags[locale]}{" "}
                   {AppConfig.LocalesNames[locale]}
                 </Menu.Item>
               ))}

@@ -1,8 +1,10 @@
 import { SearchOutlined } from "@mui/icons-material";
 import { Box, Button, TextField, useTheme } from "@mui/material";
+import { useTranslations } from "next-intl";
 
 export function SimpleSearchBox() {
   const theme = useTheme();
+  const t = useTranslations("Common");
   return (
     <Box
       sx={{
@@ -14,8 +16,9 @@ export function SimpleSearchBox() {
       }}
     >
       <TextField
-        placeholder="Search"
+        placeholder={t("searchForProducts")}
         fullWidth
+        type={"search"}
         InputProps={{
           sx: {
             height: 50,
@@ -37,7 +40,7 @@ export function SimpleSearchBox() {
                 borderRadius: "0 8px 8px 0",
               }}
             >
-              Search
+              {t("search")}
             </Button>
           ),
           startAdornment: (

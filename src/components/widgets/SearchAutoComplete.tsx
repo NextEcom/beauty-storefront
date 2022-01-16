@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 
@@ -83,6 +84,7 @@ async function defaultQueryFunction(
 export function SearchAutoComplete({
   suggestionsQueryFn = defaultQueryFunction,
 }: Props) {
+  const t = useTranslations("Common");
   const [searchTerm, setSearchTerm] = useState("");
 
   const [results, setResults] = useState<string[]>([]);
@@ -124,12 +126,12 @@ export function SearchAutoComplete({
       <StyledInputBase
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search"
-        aria-label="search"
+        placeholder={t("searchForProducts")}
+        aria-label={t("searchForProducts")}
       />
       <IconWrapper>
         {searchTerm ? (
-          <IconButton aria-label="clear input" onClick={handleClear}>
+          <IconButton aria-label={t("clearInput")} onClick={handleClear}>
             <CloseOutlined />
           </IconButton>
         ) : (
@@ -140,7 +142,7 @@ export function SearchAutoComplete({
       </IconWrapper>
       {results.length ? (
         <StyledPaper elevation={0}>
-          <StyledList aria-label="search suggestions">
+          <StyledList aria-label={t("searchSuggestions")}>
             {results.map((result, index) => {
               const matches = match(result, searchTerm);
               const parts = parse(result, matches);

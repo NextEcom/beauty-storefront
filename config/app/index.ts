@@ -15,5 +15,9 @@ export const AppConfig = {
     [Locale.en]: "English",
     [Locale.ru]: "Русский",
   },
+  LocalesFlags: {
+    [Locale.en]: "🇬🇧",
+    [Locale.ru]: "🇷🇺",
+  },
   defaultLocale: Locale.en,
 };
