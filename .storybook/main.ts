@@ -21,6 +21,9 @@ export default {
     ];
     config.resolve.alias = {
       ...config.resolve?.alias,
+      "@emotion/core": toPath("node_modules/@emotion/react"),
+      "@emotion/styled": toPath("node_modules/@emotion/styled"),
+      "emotion-theming": toPath("node_modules/@emotion/react"),
       "@/components": toPath("src/components"),
       "@/styles": toPath("src/styles"),
       "@/pages": toPath("src/pages"),

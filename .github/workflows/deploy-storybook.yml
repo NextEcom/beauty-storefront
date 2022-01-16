@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - dev
-    # paths: ["src/**"]
+    # paths: ["src/**", ".storybook/**"]
 
 jobs:
   buid-and-deploy:
@@ -33,9 +33,8 @@ jobs:
           username: ${{ secrets.STORYBOOK_USER }}
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
-            cd ~/storybook
-            mv docker-compose-storybook.yml docker-compose.yml
-            docker-compose down
+            rm -rf ~/mysites/www/sb-beauty-store/*
+            unzip -o ~/storybook/storybook_build.zip -d ~/mysites/www/sb-beauty-store
+            cd ~/mysites/www/sb-beauty-store
+            mv storybook-static/* .
             rm -rf storybook-static
-            unzip -o storybook_build.zip
-            docker-compose up -d

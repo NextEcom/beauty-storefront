@@ -53,12 +53,12 @@ export const decorators = [
   (Story, context) => {
     return (
       <TestAppProvider locale={context.globals.locale as any}>
-        <ThemeProvider theme={theme}>
-          <EmotionThemeProvider theme={theme}>
+        <EmotionThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
             <Story />
-          </EmotionThemeProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </EmotionThemeProvider>
       </TestAppProvider>
     );
   },
