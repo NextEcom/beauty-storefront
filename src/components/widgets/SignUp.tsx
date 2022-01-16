@@ -11,7 +11,7 @@ import {
 import { Box } from "@mui/system";
 import { useTranslations } from "next-intl";
 import { ChangeEventHandler, useEffect, useState } from "react";
-import SnackbarAlert from "../base/SnackbarAlert";
+import { SnackbarAlert } from "../base";
 
 function validateFormInputs(inputs: SignUpFormInput): {
   isValid: boolean;
