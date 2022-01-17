@@ -9,13 +9,12 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  Link,
   TextField,
   Typography,
 } from "@mui/material";
 import { useTranslations } from "next-intl";
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { SnackbarAlert } from "../base";
+import { NavLink, SnackbarAlert } from "../base";
 
 function validateFormInputs(inputs: SignUpFormInput): {
   isValid: boolean;
@@ -229,9 +228,9 @@ export function SignUp({
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
+              <NavLink href="/login" variant="body2">
+                {t("alreadyHaveAccount?SignIn")}
+              </NavLink>
             </Grid>
           </Grid>
 

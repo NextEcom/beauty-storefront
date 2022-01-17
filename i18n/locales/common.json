@@ -18,7 +18,8 @@
       "verifyOTP": "Verify OTP",
       "createAccount": "Create Account",
       "phoneVerified": "Phone Number Verified",
-      "changeNumber": "Change Number"
+      "changeNumber": "Change Number",
+      "alreadyHaveAccount?SignIn": "Already have an account? Sign in"
     }
   },
   "ru": {
@@ -40,7 +41,8 @@
       "verifyOTP": "Проверьте код",
       "createAccount": "Создать аккаунт",
       "phoneVerified": "Номер телефона подтвержден",
-      "changeNumber": "Изменить номер"
+      "changeNumber": "Изменить номер",
+      "alreadyHaveAccount?SignIn": "Уже есть аккаунт? Войти"
     }
   }
 }

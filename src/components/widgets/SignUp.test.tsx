@@ -80,7 +80,7 @@ describe("Signup Flow", () => {
         RegExp(signUpLocale.password, "i")
       );
       createAccBtn = screen.getByRole<HTMLButtonElement>("button", {
-        name: RegExp(signUpLocale.createAccount, "i"),
+        name: RegExp(signUpLocale.signUp, "i"),
       });
 
       expect(createAccBtn).toBeDisabled();
@@ -143,7 +143,7 @@ describe("Signup Flow", () => {
         RegExp(signUpLocale.password, "i")
       );
       createAccBtn = screen.getByRole<HTMLButtonElement>("button", {
-        name: RegExp(signUpLocale.createAccount, "i"),
+        name: RegExp(signUpLocale.signUp, "i"),
       });
 
       userEvent.type(firstNameInput, "John");
@@ -200,7 +200,7 @@ describe("Signup Flow", () => {
       userEvent.type(passwordInput, "password");
 
       createAccBtn = screen.getByRole<HTMLButtonElement>("button", {
-        name: RegExp(signUpLocale.createAccount, "i"),
+        name: RegExp(signUpLocale.signUp, "i"),
       });
       userEvent.click(createAccBtn);
 
