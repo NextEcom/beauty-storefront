@@ -8,6 +8,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+RUN yarn add sharp
 
 # Rebuild the source code only when needed
 FROM node:16-alpine AS runner
@@ -19,12 +20,14 @@ USER nextjs
 ENV NODE_ENV production
 
 WORKDIR /app
+
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=builder next.config.js ./
-COPY --from=builder public ./public
-COPY --from=builder package.json ./package.json
+COPY --from=deps /app/package.json ./package.json
+COPY --from=deps /app/yarn.lock ./yarn.lock
+
 COPY --chown=nextjs:nodejs .next .next
-RUN yarn add sharp
+COPY next.config.js next.config.js
+COPY public public
 
 EXPOSE 3000
 ENV PORT 3000
