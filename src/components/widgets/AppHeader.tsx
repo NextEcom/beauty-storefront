@@ -12,8 +12,10 @@ export function AppHeader(props: AppHeaderProps) {
       elevation={1}
       sx={{
         height: LayoutConstants.AppHeaderHeight,
+        bgcolor: "grey.50",
       }}
       color="inherit"
+      {...props}
     >
       <AppContainer
         sx={{
