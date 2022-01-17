@@ -13,8 +13,8 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn e2e:headless
-      - uses: actions/upload-artifact@v2
       - run: zip -r build.zip .next package.json yarn.lock .env** next.config.js
+      - uses: actions/upload-artifact@v2
         with:
           if-no-files-found: error
           name: "next-build"
