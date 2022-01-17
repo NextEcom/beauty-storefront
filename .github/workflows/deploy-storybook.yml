@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - dev
-    # paths: ["src/**", ".storybook/**"]
+    paths: ["src/**", ".storybook/**", "i18n/**", "public/**", ".github/**", "config/**", "testUtils/**", package.json]
 
 jobs:
   buid-and-deploy:
