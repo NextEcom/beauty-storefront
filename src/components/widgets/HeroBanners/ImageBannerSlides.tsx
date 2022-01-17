@@ -1,4 +1,5 @@
 import { NavLink } from "@/components/base";
+import { SliderImageHeight } from "@/types";
 import { styled } from "@mui/material";
 import { Box } from "@mui/system";
 import { LayoutConstants } from "config/app";
@@ -25,23 +26,19 @@ const StyledSwiper = styled(Swiper)(({ theme }) => ({
   },
 }));
 
-const BannerWrapper = styled(Box)`
-    height: calc(100vh - ${
-      LayoutConstants.AppHeaderHeight + LayoutConstants.TopbarHeight
-    }px);});
-`;
-
 export type ImageBannerSlidesProps = {
   slides?: {
     image: string;
     name?: string;
     link?: string;
   }[];
+  imageHeight?: SliderImageHeight;
   swiperProps?: SwiperProps;
   slideProps?: SwiperSlideProps;
 };
 export function ImageBannerSlides({
   slides = [],
+  imageHeight = 400,
   swiperProps,
   slideProps,
 }: ImageBannerSlidesProps) {
@@ -57,7 +54,17 @@ export function ImageBannerSlides({
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} {...slideProps}>
-          <BannerWrapper>
+          <Box
+            sx={{
+              height:
+                imageHeight == "full"
+                  ? `calc(100vh - ${
+                      LayoutConstants.AppHeaderHeight +
+                      LayoutConstants.TopbarHeight
+                    }px);})`
+                  : `${imageHeight}px`,
+            }}
+          >
             <NavLink noLinkStyle href={slide.link || "#"}>
               <Image
                 layout="fill"
@@ -67,7 +74,7 @@ export function ImageBannerSlides({
                 alt={slide.name}
               />
             </NavLink>
-          </BannerWrapper>
+          </Box>
         </SwiperSlide>
       ))}
     </StyledSwiper>

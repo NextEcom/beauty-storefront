@@ -28,6 +28,8 @@ export type ImageSliderBannersData = {
   image: string;
 };
 
+export type SliderImageHeight = "full" | number;
+
 export type PageHeroBannerData =
   | {
       type: HeroBannerType.Simple;
@@ -36,4 +38,5 @@ export type PageHeroBannerData =
   | {
       type: HeroBannerType.ImageSlider;
       data: ImageSliderBannersData[];
+      imageHeight?: SliderImageHeight;
     };
