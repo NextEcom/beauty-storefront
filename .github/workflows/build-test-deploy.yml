@@ -64,4 +64,8 @@ jobs:
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
             cd ~/storefront
-            ls -al
+            cd ~/storefront/next-build
+            docker-compose down
+            docker-compose build
+            docker-compose up -d
+            
