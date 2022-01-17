@@ -24,6 +24,8 @@ jobs:
             yarn.lock 
             .env** 
             next.config.js
+            docker-compose.yml
+            Dockerfile
 
   unit-test:
     runs-on: ubuntu-latest
@@ -61,4 +63,5 @@ jobs:
           username: ${{ secrets.STORYBOOK_USER }}
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
-            unzip -o ~/next-build.zip -d ~/next-build
+            cd ~/storefront
+            ls -al
