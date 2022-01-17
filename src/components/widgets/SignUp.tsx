@@ -1,14 +1,18 @@
 import { SignUpFormController, SignUpFormInput } from "@/types";
 import {
   AlertColor,
+  Box,
   Button,
+  Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
+  Link,
   TextField,
+  Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import { useTranslations } from "next-intl";
 import { ChangeEventHandler, useEffect, useState } from "react";
 import SnackbarAlert from "../base/SnackbarAlert";
@@ -156,56 +160,97 @@ export function SignUp({
   };
 
   return (
-    <Box>
-      {Object.keys(formInputs).map((input) => {
-        const inputKey = input as keyof SignUpFormInput;
-        return (
-          <TextField
-            key={inputKey}
-            name={inputKey}
-            label={t(inputKey)}
-            type={
-              inputKey === "password"
-                ? "password"
-                : inputKey == "phoneNumber"
-                ? "tel"
-                : "text"
-            }
-            value={formInputs[inputKey]}
-            onChange={handleInputChange}
-            required
-            error={Boolean(
-              signUpErrorResult && signUpErrorResult.fieldErrors[inputKey]
-            )}
-            helperText={
-              signUpErrorResult && signUpErrorResult.fieldErrors[inputKey]
-            }
-          />
-        );
-      })}
-
-      <Button
-        variant="contained"
-        color="primary"
-        disabled={!isValid}
-        onClick={handleSignUp}
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        {t("createAccount")}
-      </Button>
-      <EnterOTPDialog
-        isOpen={showOTPDialog}
-        onVerify={handleVerifyOTP}
-        onChangeNumber={() => setShowOTPDialog(false)}
-      />
-      {snackbar && (
-        <SnackbarAlert
-          open={Boolean(snackbar)}
-          severity={snackbar.type}
-          handleClose={() => setSnackbar(null)}
-        >
-          {snackbar.message}
-        </SnackbarAlert>
-      )}
-    </Box>
+        <Typography component="h1" variant="h4">
+          {t("signUp")}
+        </Typography>
+        <Box sx={{ mt: 3 }}>
+          <Grid container spacing={3}>
+            {Object.keys(formInputs).map((input) => {
+              const inputKey = input as keyof SignUpFormInput;
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  sm={
+                    inputKey === "firstName"
+                      ? 6
+                      : inputKey == "lastName"
+                      ? 6
+                      : 12
+                  }
+                  key={inputKey}
+                >
+                  <TextField
+                    fullWidth
+                    key={inputKey}
+                    name={inputKey}
+                    label={t(inputKey)}
+                    type={
+                      inputKey === "password"
+                        ? "password"
+                        : inputKey == "phoneNumber"
+                        ? "tel"
+                        : "text"
+                    }
+                    value={formInputs[inputKey]}
+                    onChange={handleInputChange}
+                    required
+                    error={Boolean(
+                      signUpErrorResult &&
+                        signUpErrorResult.fieldErrors[inputKey]
+                    )}
+                    helperText={
+                      signUpErrorResult &&
+                      signUpErrorResult.fieldErrors[inputKey]
+                    }
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+
+          <Button
+            disabled={!isValid}
+            onClick={handleSignUp}
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            {t("signUp")}
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="/login" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+
+          <EnterOTPDialog
+            isOpen={showOTPDialog}
+            onVerify={handleVerifyOTP}
+            onChangeNumber={() => setShowOTPDialog(false)}
+          />
+          {snackbar && (
+            <SnackbarAlert
+              open={Boolean(snackbar)}
+              severity={snackbar.type}
+              handleClose={() => setSnackbar(null)}
+            >
+              {snackbar.message}
+            </SnackbarAlert>
+          )}
+        </Box>
+      </Box>
+    </Container>
   );
 }

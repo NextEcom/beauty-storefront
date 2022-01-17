@@ -4,6 +4,7 @@
       "change_language": "Change Language"
     },
     "SignUpForm": {
+      "signUp": "Sign up",
       "firstName": "First Name",
       "lastName": "Last Name",
       "password": "Password",
@@ -20,6 +21,7 @@
       "change_language": "Изменить язык"
     },
     "SignUpForm": {
+      "signUp": "Регистрация",
       "firstName": "Имя",
       "lastName": "Фамилия",
       "password": "Пароль",
