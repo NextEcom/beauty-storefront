@@ -6,6 +6,7 @@ import "@fontsource/roboto/700.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import * as nextImage from "next/image";
 import React from "react";
+import "swiper/css";
 import theme from "../src/styles/theme";
 import TestAppProvider from "../testUtils/TestAppProvider";
 

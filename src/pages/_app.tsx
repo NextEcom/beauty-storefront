@@ -11,6 +11,7 @@ import localesJson from "i18n/locales/common.json";
 import { NextComponentType, NextPageContext } from "next";
 import type { AppProps } from "next/app";
 import { ReactNode } from "react";
+import "swiper/css";
 
 const clientSideEmotionCache = createEmotionCache();
 

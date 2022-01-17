@@ -1,10 +1,8 @@
-import { AvailableLocale } from "@/types";
+import { AvailableLocale, HeroBannerType } from "@/types";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useRouter } from "next/router";
-import {
-  mockHeaderBannerData,
-  mockProductsByCollection,
-} from "testUtils/mocks/cms";
+import { getMockHeroBannerData } from "testUtils/mocks/api/heroBanners";
+import { mockProductsByCollection } from "testUtils/mocks/api/products";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { IndexPage } from "./IndexPage";
 
@@ -16,11 +14,16 @@ export default {
 const Template: ComponentStory<typeof IndexPage> = (args) => {
   const { locale } = useRouter();
 
+  const heroBannerData = getMockHeroBannerData(
+    locale as AvailableLocale,
+    args.heroBannerData?.type || HeroBannerType.ImageSlider
+  );
+
   return (
     <DefaultLayout>
       <IndexPage
         {...args}
-        heroBanner={mockHeaderBannerData[locale as AvailableLocale]}
+        heroBannerData={heroBannerData}
         productsByCollection={
           mockProductsByCollection[locale as AvailableLocale]
         }
@@ -29,4 +32,18 @@ const Template: ComponentStory<typeof IndexPage> = (args) => {
   );
 };
 
-export const IndexPageView = Template.bind({});
+export const IndexPageSimpleBanner = Template.bind({});
+IndexPageSimpleBanner.args = {
+  heroBannerData: {
+    type: HeroBannerType.Simple,
+    data: {},
+  },
+};
+
+export const IndexPageImageSliderBanner = Template.bind({});
+IndexPageImageSliderBanner.args = {
+  heroBannerData: {
+    type: HeroBannerType.ImageSlider,
+    data: [],
+  },
+};

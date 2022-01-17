@@ -1,13 +1,13 @@
-import { HeroBannerData } from "@/types";
+import { SimpleHeroBannerData } from "@/types";
 import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export type HeroBannerProps = {
-  bannerData?: HeroBannerData;
+export type SimpleHeroBannerProps = {
+  bannerData?: SimpleHeroBannerData;
 };
 
-export function HeroBanner({ bannerData: data }: HeroBannerProps) {
+export function SimpleHeroBanner({ bannerData: data }: SimpleHeroBannerProps) {
   const { locale } = useRouter();
   const theme = useTheme();
   return data ? (

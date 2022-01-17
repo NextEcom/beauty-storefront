@@ -1,22 +1,34 @@
-import { HeroBannerData } from "@/types";
+import { HeroBannerType, PageHeroBannerData } from "@/types";
 import { ProductsDataByCollection } from "@/types/products";
 import { Box } from "@mui/material";
-import { HeroBanner } from "../widgets/HeroBanner";
+import { ReactElement } from "react";
+import { ImageBannerSlides, SimpleHeroBanner } from "../widgets/HeroBanners";
 import ProductCollectionsTabs from "../widgets/ProductCollectionsTabs";
 import { SignUpForm } from "../widgets/SignUp.stories";
 
 export type IndexPageProps = {
-  heroBanner?: HeroBannerData;
+  heroBannerData?: PageHeroBannerData;
   productsByCollection?: ProductsDataByCollection;
 };
 
 export function IndexPage({
-  heroBanner,
+  heroBannerData,
   productsByCollection,
 }: IndexPageProps) {
+  let heroBannerElement:
+    | ReactElement<typeof SimpleHeroBanner>
+    | ReactElement<typeof ImageBannerSlides>
+    | null = null;
+
+  if (heroBannerData?.type === HeroBannerType.ImageSlider) {
+    heroBannerElement = <ImageBannerSlides slides={heroBannerData.data} />;
+  } else if (heroBannerData?.type === HeroBannerType.Simple) {
+    heroBannerElement = <SimpleHeroBanner bannerData={heroBannerData.data} />;
+  }
+
   return (
     <Box>
-      {heroBanner && <HeroBanner bannerData={heroBanner} />}
+      {heroBannerElement}
       {productsByCollection && (
         <ProductCollectionsTabs productsByCollection={productsByCollection} />
       )}

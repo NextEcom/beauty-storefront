@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useRouter } from "next/router";
-import { getMockCategoriesData } from "testUtils/mocks/api";
+import { getMockCategoriesData } from "testUtils/mocks/api/categories";
 import { CategoryMenu } from "./CategoryMenu";
 
 export default {

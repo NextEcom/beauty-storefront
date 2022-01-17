@@ -1,7 +1,7 @@
 import { AvailableLocale } from "@/types";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { getMockCategoriesData } from "testUtils/mocks/api";
+import { getMockCategoriesData } from "testUtils/mocks/api/categories";
 import TestAppProvider from "testUtils/TestAppProvider";
 import { CategoryMenu } from "./CategoryMenu";
 

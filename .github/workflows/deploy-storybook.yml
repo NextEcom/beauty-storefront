@@ -5,7 +5,17 @@ on:
     branches:
       - main
       - dev
-    paths: ["src/**", ".storybook/**", "i18n/**", "public/**", ".github/workflows/deploy-storybook.yml", "config/**", "testUtils/**", package.json]
+    paths:
+      [
+        "src/**",
+        ".storybook/**",
+        "i18n/**",
+        "public/**",
+        ".github/workflows/deploy-storybook.yml",
+        "config/**",
+        "testUtils/**",
+        package.json,
+      ]
 
 jobs:
   buid-and-deploy:

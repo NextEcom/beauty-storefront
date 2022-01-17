@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import localesJson from "i18n/locales/common.json";
-import { getMockSignUpFormController } from "testUtils/mocks/api";
+import { getMockSignUpFormController } from "testUtils/mocks/api/auth";
 import TestAppProvider from "testUtils/TestAppProvider";
 import { SignUp } from "./SignUp";
 

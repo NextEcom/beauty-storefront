@@ -19,7 +19,7 @@ export async function getStaticProps({
       // pattern is to put them in JSON files separated by language and read
       // the desired one based on the `locale` received from Next.js.
       now: new Date().getTime(),
-      heroBanner: await getHomepageHeroBanner(locale as AvailableLocale),
+      heroBannerData: await getHomepageHeroBanner(locale as AvailableLocale),
       productsByCollection: await getProductsByCollection(
         locale as AvailableLocale
       ),

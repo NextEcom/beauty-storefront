@@ -1,38 +1,5 @@
 import { AvailableLocale, ProductsDataByCollection } from "@/types";
 
-export const mockHeaderBannerData = {
-  ru: {
-    heading: `Натуральная косметика ручной работы`,
-    subHeading: `Коллекция 2022 года`,
-    text: `Найдите идеальный стиль для себя`,
-    link: "/shop",
-    linkText: "Магазин сейчас!",
-    containerStyle: {
-      color: "white",
-      backgroundImage:
-        "url('https://images.unsplash.com/photo-1483137140003-ae073b395549?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80')",
-    },
-    overlayStyle: {
-      backgroundColor: "rgba(0,0,0,0.7)",
-    },
-  },
-  en: {
-    heading: `Handmade Natural Cosmetics`,
-    subHeading: `2022 Collection`,
-    text: `Find The Perfect style for you`,
-    link: "/shop",
-    linkText: "Shop Now!",
-    containerStyle: {
-      color: "white",
-      backgroundImage:
-        "url('https://images.unsplash.com/photo-1483137140003-ae073b395549?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80')",
-    },
-    overlayStyle: {
-      backgroundColor: "rgba(0,0,0,0.7)",
-    },
-  },
-};
-
 const enProducts = [
   {
     id: `1`,

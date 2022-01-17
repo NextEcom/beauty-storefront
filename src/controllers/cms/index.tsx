@@ -1,18 +1,13 @@
-import { AvailableLocale, HeroBannerData } from "@/types";
+import { AvailableLocale, HeroBannerType, PageHeroBannerData } from "@/types";
 import { AppConfig } from "config/app";
-import {
-  mockHeaderBannerData,
-  mockProductsByCollection,
-} from "testUtils/mocks/cms";
+import { getMockHeroBannerData } from "testUtils/mocks/api/heroBanners";
+import { mockProductsByCollection } from "testUtils/mocks/api/products";
 
 export async function getHomepageHeroBanner(
-  locale: AvailableLocale = AppConfig.defaultLocale
-): Promise<HeroBannerData> {
-  if (locale == AppConfig.Locale.ru) {
-    return mockHeaderBannerData["ru"];
-  }
-
-  return mockHeaderBannerData["en"];
+  locale: AvailableLocale = AppConfig.defaultLocale,
+  type: HeroBannerType = HeroBannerType.ImageSlider
+): Promise<PageHeroBannerData | undefined> {
+  return getMockHeroBannerData(locale, type);
 }
 
 export async function getProductsByCollection(locale?: AvailableLocale) {
