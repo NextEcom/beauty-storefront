@@ -1,7 +1,7 @@
 import { Alert, AlertColor, Snackbar } from "@mui/material";
 import { ComponentProps, ReactNode } from "react";
 
-export default function SnackbarAlert({
+export function SnackbarAlert({
   open = false,
   handleClose = () => null,
   severity = "success",

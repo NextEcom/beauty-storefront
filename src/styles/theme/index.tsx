@@ -1,19 +1,19 @@
-import { cyan, red, teal } from "@mui/material/colors";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material/styles";
 
-// Create a theme instance.
-const theme = createTheme({
+export const themeOptions: ThemeOptions = {
   palette: {
     primary: {
-      main: teal[400],
+      main: "#222127",
     },
     secondary: {
-      main: cyan[400],
+      main: "#33d1a7",
     },
-    error: {
-      main: red.A400,
+    text: {
+      primary: "#343440",
     },
   },
-});
+};
+// Create a theme instance.
+const theme = createTheme(themeOptions);
 
 export default theme;

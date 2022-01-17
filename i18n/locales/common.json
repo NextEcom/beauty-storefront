@@ -1,7 +1,12 @@
 {
   "en": {
     "Common": {
-      "change_language": "Change Language"
+      "search": "Search",
+      "searchForProducts": "Search for products",
+      "clearInput": "Clear input",
+      "searchSuggestions": "Search suggestions",
+      "openCart": "Open cart",
+      "itemsInCart": "{count} items in cart"
     },
     "SignUpForm": {
       "signUp": "Sign up",
@@ -18,7 +23,12 @@
   },
   "ru": {
     "Common": {
-      "change_language": "Изменить язык"
+      "search": "Поиск",
+      "searchForProducts": "Поиск продуктов",
+      "clearInput": "Очистить ввод",
+      "searchSuggestions": "Подсказки поиска",
+      "openCart": "Открыть корзину",
+      "itemsInCart": "{count} товаров в корзине"
     },
     "SignUpForm": {
       "signUp": "Регистрация",

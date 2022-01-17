@@ -3,12 +3,21 @@ enum Locale {
   ru = "ru",
 }
 
+export const LayoutConstants = {
+  TopbarHeight: 40,
+  AppHeaderHeight: 80,
+};
+
 export const AppConfig = {
   AvailableLocales: Object.values(Locale),
   Locale,
   LocalesNames: {
     [Locale.en]: "English",
     [Locale.ru]: "Русский",
+  },
+  LocalesFlags: {
+    [Locale.en]: "🇬🇧",
+    [Locale.ru]: "🇷🇺",
   },
   defaultLocale: Locale.en,
 };

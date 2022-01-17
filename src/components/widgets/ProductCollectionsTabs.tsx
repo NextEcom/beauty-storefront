@@ -1,7 +1,8 @@
 import { ProductsDataByCollection } from "@/types";
-import { Box, Container, Tab, Tabs, useTheme } from "@mui/material";
+import { Box, Tab, Tabs, useTheme } from "@mui/material";
 import { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
+import { AppContainer } from "../base";
 import ProductView from "./ProductView";
 
 interface TabPanelProps {
@@ -53,7 +54,7 @@ export default function TabbedCollectionProducts({
 
   return productsByCollection ? (
     <Box data-testid="collection-products" margin={`${theme.spacing(4)} 0`}>
-      <Container
+      <AppContainer
         maxWidth="sm"
         sx={{
           margin: `${theme.spacing(4)}px auto`,
@@ -71,8 +72,8 @@ export default function TabbedCollectionProducts({
             <Tab label={key} key={key} {...a11yProps(index)} />
           ))}
         </Tabs>
-      </Container>
-      <Container maxWidth="lg">
+      </AppContainer>
+      <AppContainer maxWidth="lg">
         <SwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={selectedProductsTabIndex}
@@ -100,7 +101,7 @@ export default function TabbedCollectionProducts({
             </TabPanel>
           ))}
         </SwipeableViews>
-      </Container>
+      </AppContainer>
     </Box>
   ) : null;
 }

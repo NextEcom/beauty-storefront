@@ -5,6 +5,7 @@ import {
   mockHeaderBannerData,
   mockProductsByCollection,
 } from "testUtils/mocks/cms";
+import { DefaultLayout } from "../layouts/DefaultLayout";
 import { IndexPage } from "./IndexPage";
 
 export default {
@@ -16,11 +17,15 @@ const Template: ComponentStory<typeof IndexPage> = (args) => {
   const { locale } = useRouter();
 
   return (
-    <IndexPage
-      {...args}
-      heroBanner={mockHeaderBannerData[locale as AvailableLocale]}
-      productsByCollection={mockProductsByCollection[locale as AvailableLocale]}
-    />
+    <DefaultLayout>
+      <IndexPage
+        {...args}
+        heroBanner={mockHeaderBannerData[locale as AvailableLocale]}
+        productsByCollection={
+          mockProductsByCollection[locale as AvailableLocale]
+        }
+      />
+    </DefaultLayout>
   );
 };
 

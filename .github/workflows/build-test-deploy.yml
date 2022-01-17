@@ -1,0 +1,71 @@
+name: Build, Test, Deploy
+
+on: [push, pull_request]
+
+jobs:
+  build-and-e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn e2e:headless
+      - uses: actions/upload-artifact@v2
+        with:
+          if-no-files-found: error
+          name: "next-build"
+          path: |
+            public
+            .next 
+            package.json 
+            yarn.lock 
+            .env** 
+            next.config.js
+            docker-compose.yml
+            Dockerfile
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+  
+  deploy:
+    if: 
+      success() && contains('
+        refs/heads/dev
+        refs/heads/staging
+        refs/heads/main', github.ref)
+    runs-on: ubuntu-latest
+    needs: [unit-test, build-and-e2e-test]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: "next-build"
+          path: "next-build"
+      - uses: appleboy/scp-action@master
+        with:
+          host: ${{secrets.STORYBOOK_HOST}}
+          username: ${{secrets.STORYBOOK_USER}}
+          key: ${{ secrets.STORYBOOK_KEY }}
+          source: next-build
+          target: "~/storefront"
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STORYBOOK_HOST }}
+          username: ${{ secrets.STORYBOOK_USER }}
+          key: ${{ secrets.STORYBOOK_KEY }}
+          script: |
+            cd ~/storefront
+            cd ~/storefront/next-build
+            docker-compose down
+            docker-compose build
+            docker-compose up -d
+            
