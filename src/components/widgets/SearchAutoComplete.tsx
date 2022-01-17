@@ -52,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const StyledList = styled(List)(({ theme }) => ({
+const StyledList = styled(List)(() => ({
   fontStyle: "italic",
   paddingBottom: 0,
   maxHeight: "320px",

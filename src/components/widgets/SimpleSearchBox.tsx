@@ -9,10 +9,10 @@ export function SimpleSearchBox() {
     <Box
       sx={{
         margin: "auto",
-        maxWidth: "600px",
+        maxWidth: "500px",
         borderRadius: "8px",
         overflow: "hidden",
-        boxShadow: theme.shadows[2],
+        boxShadow: theme.shadows[1],
       }}
     >
       <TextField
@@ -21,7 +21,7 @@ export function SimpleSearchBox() {
         type={"search"}
         InputProps={{
           sx: {
-            height: 50,
+            height: 40,
             paddingRight: 0,
             color: "grey.700",
             background: "#fff",

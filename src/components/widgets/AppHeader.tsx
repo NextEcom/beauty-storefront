@@ -1,6 +1,7 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { LayoutConstants } from "config/app";
 import { AppContainer, Flexbox } from "../base";
+import { CartIconButton } from "../base/CartIconButton";
 import { SimpleSearchBox } from "./SimpleSearchBox";
 
 export type AppHeaderProps = {};
@@ -28,19 +29,22 @@ export function AppHeader(props: AppHeaderProps) {
           <Flexbox
             justifyContent={"space-between"}
             alignItems={"center"}
+            gap={2}
             sx={{
               width: "100%",
             }}
           >
-            <Box>
+            <Box flex={1}>
               <Typography variant="h6" noWrap component="div">
                 LOGO
               </Typography>
             </Box>
-            <Box>
+            <Box flex={3}>
               <SimpleSearchBox />
             </Box>
-            <Box />
+            <Flexbox justifyContent={"flex-end"} gap={1.5} flex={2}>
+              <CartIconButton />
+            </Flexbox>
           </Flexbox>
         </Toolbar>
       </AppContainer>

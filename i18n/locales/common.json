@@ -4,7 +4,9 @@
       "search": "Search",
       "searchForProducts": "Search for products",
       "clearInput": "Clear input",
-      "searchSuggestions": "Search suggestions"
+      "searchSuggestions": "Search suggestions",
+      "openCart": "Open cart",
+      "itemsInCart": "{count} items in cart"
     },
     "SignUpForm": {
       "firstName": "First Name",
@@ -23,7 +25,9 @@
       "search": "Поиск",
       "searchForProducts": "Поиск продуктов",
       "clearInput": "Очистить ввод",
-      "searchSuggestions": "Подсказки поиска"
+      "searchSuggestions": "Подсказки поиска",
+      "openCart": "Открыть корзину",
+      "itemsInCart": "{count} товаров в корзине"
     },
     "SignUpForm": {
       "firstName": "Имя",
