@@ -1,0 +1,54 @@
+name: Build and test
+
+on: [push, pull_request]
+
+jobs:
+  build-and-e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn e2e:headless
+      - uses: actions/upload-artifact@v2
+      - run: zip -r build.zip .next package.json yarn.lock .env** next.config.js
+        with:
+          if-no-files-found: error
+          name: "next-build"
+          path: build.zip
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [unit-test, build-and-e2e-test]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: "next-build"
+          path: build.zip
+      - uses: appleboy/scp-action@master
+        with:
+          host: ${{secrets.STORYBOOK_HOST}}
+          username: ${{secrets.STORYBOOK_USER}}
+          key: ${{ secrets.STORYBOOK_KEY }}
+          source: build.zip
+          target: "~/next-build"
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STORYBOOK_HOST }}
+          username: ${{ secrets.STORYBOOK_USER }}
+          key: ${{ secrets.STORYBOOK_KEY }}
+          script: |
+            unzip -o ~/next-build/build.zip ~/next-build/
