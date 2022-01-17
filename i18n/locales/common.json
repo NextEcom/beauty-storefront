@@ -9,6 +9,7 @@
       "itemsInCart": "{count} items in cart"
     },
     "SignUpForm": {
+      "signUp": "Sign up",
       "firstName": "First Name",
       "lastName": "Last Name",
       "password": "Password",
@@ -30,6 +31,7 @@
       "itemsInCart": "{count} товаров в корзине"
     },
     "SignUpForm": {
+      "signUp": "Регистрация",
       "firstName": "Имя",
       "lastName": "Фамилия",
       "password": "Пароль",
