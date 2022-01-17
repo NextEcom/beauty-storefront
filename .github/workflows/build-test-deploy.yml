@@ -13,6 +13,17 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn e2e:headless
+      - uses: actions/upload-artifact@v2
+        with:
+          if-no-files-found: error
+          name: "next-build"
+          path: |
+            public
+            .next 
+            package.json 
+            yarn.lock 
+            .env** 
+            next.config.js
 
   unit-test:
     runs-on: ubuntu-latest
@@ -25,22 +36,24 @@ jobs:
       - run: yarn test
   
   deploy:
-    runs-on: ubuntu-latest
-    needs: [unit-test, build-and-e2e-test]
     if: 
       success() && contains('
         refs/heads/dev
         refs/heads/staging
-        refs/heads/main
-      ', github.ref)
+        refs/heads/main', github.ref)
+    runs-on: ubuntu-latest
+    needs: [unit-test, build-and-e2e-test]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: "next-build"
+          path: "next-build"
       - uses: appleboy/scp-action@master
         with:
           host: ${{secrets.STORYBOOK_HOST}}
           username: ${{secrets.STORYBOOK_USER}}
           key: ${{ secrets.STORYBOOK_KEY }}
-          source: ./
+          source: next-build
           target: "~/storefront"
       - uses: appleboy/ssh-action@master
         with:
@@ -48,6 +61,4 @@ jobs:
           username: ${{ secrets.STORYBOOK_USER }}
           key: ${{ secrets.STORYBOOK_KEY }}
           script: |
-            cd ~/storefront
-            docker-compose down
-            docker-compose up --build -d
+            unzip -o ~/next-build.zip -d ~/next-build
