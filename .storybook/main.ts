@@ -28,6 +28,7 @@ export default {
       "@/styles": toPath("src/styles"),
       "@/pages": toPath("src/pages"),
       "@/types": toPath("src/types"),
+      "@/controllers": toPath("src/controllers"),
     };
     config.plugins.push(
       new webpack.DefinePlugin({
