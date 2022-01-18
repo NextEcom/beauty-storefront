@@ -9,7 +9,7 @@ import userEvent from "@testing-library/user-event";
 import localesJson from "i18n/locales/common.json";
 import { getMockSignUpFormController } from "testUtils/mocks/api/auth";
 import TestAppProvider from "testUtils/TestAppProvider";
-import { SignUp } from "./SignUp";
+import { SignUpForm } from "./SignUpForm";
 
 function getSignUpLocale(locale: AvailableLocale) {
   return locale === "en"
@@ -30,7 +30,7 @@ describe("Signup Flow", () => {
       const signUpLocale = getSignUpLocale(locale);
       render(
         <TestAppProvider locale={locale}>
-          <SignUp />
+          <SignUpForm />
         </TestAppProvider>
       );
 
@@ -62,7 +62,7 @@ describe("Signup Flow", () => {
     for (const locale of ["en", "ru"] as AvailableLocale[]) {
       render(
         <TestAppProvider locale={locale}>
-          <SignUp handler={getMockSignUpFormController(locale as any)} />
+          <SignUpForm handler={getMockSignUpFormController(locale as any)} />
         </TestAppProvider>
       );
       const signUpLocale = getSignUpLocale(locale);
@@ -125,7 +125,7 @@ describe("Signup Flow", () => {
 
       render(
         <TestAppProvider locale={locale as any}>
-          <SignUp handler={handler} />
+          <SignUpForm handler={handler} />
         </TestAppProvider>
       );
       const signUpLocale = getSignUpLocale(locale);
@@ -175,7 +175,7 @@ describe("Signup Flow", () => {
     for (const locale of ["en", "ru"] as AvailableLocale[]) {
       render(
         <TestAppProvider locale={locale as any}>
-          <SignUp handler={getMockSignUpFormController(locale as any)} />
+          <SignUpForm handler={getMockSignUpFormController(locale as any)} />
         </TestAppProvider>
       );
 

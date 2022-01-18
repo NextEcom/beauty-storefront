@@ -21,3 +21,4 @@ export const AppConfig = {
   },
   defaultLocale: Locale.en,
 };
+

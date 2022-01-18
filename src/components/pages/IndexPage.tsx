@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import { ReactElement } from "react";
 import { ImageBannerSlides, SimpleHeroBanner } from "../widgets/HeroBanners";
 import ProductCollectionsTabs from "../widgets/ProductCollectionsTabs";
-import { SignUpForm } from "../widgets/SignUp.stories";
 
 export type IndexPageProps = {
   heroBannerData?: PageHeroBannerData;
@@ -32,7 +31,6 @@ export function IndexPage({
       {productsByCollection && (
         <ProductCollectionsTabs productsByCollection={productsByCollection} />
       )}
-      <SignUpForm />
     </Box>
   );
 }

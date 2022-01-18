@@ -6,7 +6,10 @@
       "clearInput": "Clear input",
       "searchSuggestions": "Search suggestions",
       "openCart": "Open cart",
-      "itemsInCart": "{count} items in cart"
+      "itemsInCart": "{count} items in cart",
+      "signIn": "Sign in",
+      "signUp": "Sign up",
+      "resetPassword?": "Reset password?"
     },
     "SignUpForm": {
       "signUp": "Sign up",
@@ -18,8 +21,7 @@
       "verifyOTP": "Verify OTP",
       "createAccount": "Create Account",
       "phoneVerified": "Phone Number Verified",
-      "changeNumber": "Change Number",
-      "alreadyHaveAccount?SignIn": "Already have an account? Sign in"
+      "changeNumber": "Change Number"
     }
   },
   "ru": {
@@ -29,10 +31,13 @@
       "clearInput": "Очистить ввод",
       "searchSuggestions": "Подсказки поиска",
       "openCart": "Открыть корзину",
-      "itemsInCart": "{count} товаров в корзине"
+      "itemsInCart": "{count} товаров в корзине",
+      "signIn": "Войти",
+      "signUp": "регистр",
+      "resetPassword?": "Сброс пароля?"
     },
     "SignUpForm": {
-      "signUp": "Регистрация",
+      "signUp": "регистр",
       "firstName": "Имя",
       "lastName": "Фамилия",
       "password": "Пароль",
@@ -41,8 +46,7 @@
       "verifyOTP": "Проверьте код",
       "createAccount": "Создать аккаунт",
       "phoneVerified": "Номер телефона подтвержден",
-      "changeNumber": "Изменить номер",
-      "alreadyHaveAccount?SignIn": "Уже есть аккаунт? Войти"
+      "changeNumber": "Изменить номер"
     }
   }
 }

@@ -1,10 +1,14 @@
+import { AppEvent, AppEventManager } from "@/controllers/app";
 import { AvailableLocale } from "@/types";
-import { Box, styled, Typography } from "@mui/material";
+import { Box, Button, ButtonProps, styled, Typography } from "@mui/material";
 import { LayoutConstants } from "config/app";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/router";
 import { AppContainer, Flexbox } from "../base";
 import { NavLink } from "../base/NavLink";
 import { LanguageSelector } from "./LanguageSelector";
+
+const appEventManager = AppEventManager.getInstance();
 
 export type TobarItem = {
   type: "link" | "text";
@@ -44,18 +48,7 @@ const defaultTopbarItems: { [key in AvailableLocale]: TopbarProps } = {
         href: "/help",
       },
     ],
-    rightItems: [
-      {
-        type: "link",
-        text: "Sign In",
-        href: "?open_modal=signin",
-      },
-      {
-        type: "link",
-        text: "Sign Up",
-        href: "?open_modal=signup",
-      },
-    ],
+    rightItems: [],
     centerItem: {
       type: "text",
       text: "🎉50% off on all items, use code: 50OFF! Hurry Up!🎉",
@@ -79,24 +72,23 @@ const defaultTopbarItems: { [key in AvailableLocale]: TopbarProps } = {
         href: "/help",
       },
     ],
-    rightItems: [
-      {
-        type: "link",
-        text: "Войти",
-        href: "?open_modal=signin",
-      },
-      {
-        type: "link",
-        text: "регистр",
-        href: "?open_modal=signup",
-      },
-    ],
+    rightItems: [],
     centerItem: {
       type: "text",
       text: "🎉Скидка 50% на все товары, введите код: 50OFF! торопиться!🎉",
     },
   },
 };
+
+const TextButton = (props: ButtonProps) => (
+  <Button
+    size="small"
+    variant="text"
+    color="inherit"
+    sx={{ fontSize: 12, fontWeight: "400", textTransform: "none" }}
+    {...props}
+  />
+);
 
 function TopbarItem({ item }: { item?: TobarItem }) {
   const icon = item?.icon ? <TopbarIconImg src={item.icon} alt="" /> : null;
@@ -111,7 +103,7 @@ function TopbarItem({ item }: { item?: TobarItem }) {
           sx={{
             display: "inline-flex",
             alignItems: "center",
-            fontSize: "inherit",
+            fontSize: "12px",
             color: "primary.contrastText",
           }}
         >
@@ -133,6 +125,7 @@ function TopbarItem({ item }: { item?: TobarItem }) {
 
 export function Topbar(props: TopbarProps) {
   const { locale } = useRouter();
+  const t = useTranslations("Common");
   const defaultItems = defaultTopbarItems[locale as AvailableLocale];
   const leftItems = props.leftItems || defaultItems.leftItems;
   const rightItems = props.rightItems || defaultItems.rightItems;
@@ -165,12 +158,28 @@ export function Topbar(props: TopbarProps) {
           {centerItem && <TopbarItem item={centerItem} />}
         </Flexbox>
 
-        <Flexbox alignItems="center" gap={4}>
-          <Flexbox alignItems="center" gap={3}>
-            {rightItems?.map((item) => {
-              return <TopbarItem key={item.text} item={item} />;
-            })}
-          </Flexbox>
+        <Flexbox alignItems="center" gap={1.5}>
+          {rightItems?.map((item) => {
+            return <TopbarItem key={item.text} item={item} />;
+          })}
+          <TextButton
+            onClick={() =>
+              appEventManager.dispatch({
+                type: AppEvent.OpenSignupModal,
+              })
+            }
+          >
+            {t("signUp")}
+          </TextButton>
+          <TextButton
+            onClick={() => {
+              appEventManager.dispatch({
+                type: AppEvent.OpenLoginModal,
+              });
+            }}
+          >
+            {t("signIn")}
+          </TextButton>
           <LanguageSelector />
         </Flexbox>
       </AppContainer>

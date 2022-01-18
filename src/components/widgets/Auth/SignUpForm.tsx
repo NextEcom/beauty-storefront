@@ -1,20 +1,21 @@
+import {
+  ThemedPasswordField,
+  ThemedTextField,
+} from "@/components/base/ThemedInputFields";
 import { SignUpFormController, SignUpFormInput } from "@/types";
 import {
   AlertColor,
   Box,
   Button,
-  Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
   TextField,
-  Typography,
 } from "@mui/material";
 import { useTranslations } from "next-intl";
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { NavLink, SnackbarAlert } from "../base";
+import { Flexbox, SnackbarAlert } from "../../base";
 
 function validateFormInputs(inputs: SignUpFormInput): {
   isValid: boolean;
@@ -100,7 +101,7 @@ type SignUpProps = {
   handler?: SignUpFormController;
 };
 
-export function SignUp({
+export function SignUpForm({
   handler = {
     signUp: async () => ({ status: "success", data: {} as any }),
     verifyOTP: async () => ({ status: "success", data: true }),
@@ -159,97 +160,62 @@ export function SignUp({
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography component="h1" variant="h4">
+    <Box>
+      <Flexbox flexDirection="column" alignItems="center" gap={3.5}>
+        {Object.keys(formInputs).map((input) => {
+          const inputKey = input as keyof SignUpFormInput;
+          const InputField =
+            inputKey === "password" ? ThemedPasswordField : ThemedTextField;
+          return (
+            <InputField
+              key={inputKey}
+              fullWidth
+              name={inputKey}
+              label={t(inputKey)}
+              type={
+                inputKey === "password"
+                  ? "password"
+                  : inputKey == "phoneNumber"
+                  ? "tel"
+                  : "text"
+              }
+              value={formInputs[inputKey]}
+              onChange={handleInputChange}
+              required
+              error={Boolean(
+                signUpErrorResult && signUpErrorResult.fieldErrors[inputKey]
+              )}
+              helperText={
+                signUpErrorResult && signUpErrorResult.fieldErrors[inputKey]
+              }
+            />
+          );
+        })}
+
+        <Button
+          disabled={!isValid}
+          onClick={handleSignUp}
+          fullWidth
+          variant="contained"
+        >
           {t("signUp")}
-        </Typography>
-        <Box sx={{ mt: 3 }}>
-          <Grid container spacing={3}>
-            {Object.keys(formInputs).map((input) => {
-              const inputKey = input as keyof SignUpFormInput;
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={
-                    inputKey === "firstName"
-                      ? 6
-                      : inputKey == "lastName"
-                      ? 6
-                      : 12
-                  }
-                  key={inputKey}
-                >
-                  <TextField
-                    fullWidth
-                    key={inputKey}
-                    name={inputKey}
-                    label={t(inputKey)}
-                    type={
-                      inputKey === "password"
-                        ? "password"
-                        : inputKey == "phoneNumber"
-                        ? "tel"
-                        : "text"
-                    }
-                    value={formInputs[inputKey]}
-                    onChange={handleInputChange}
-                    required
-                    error={Boolean(
-                      signUpErrorResult &&
-                        signUpErrorResult.fieldErrors[inputKey]
-                    )}
-                    helperText={
-                      signUpErrorResult &&
-                      signUpErrorResult.fieldErrors[inputKey]
-                    }
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
+        </Button>
+      </Flexbox>
 
-          <Button
-            disabled={!isValid}
-            onClick={handleSignUp}
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            {t("signUp")}
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <NavLink href="/login" variant="body2">
-                {t("alreadyHaveAccount?SignIn")}
-              </NavLink>
-            </Grid>
-          </Grid>
-
-          <EnterOTPDialog
-            isOpen={showOTPDialog}
-            onVerify={handleVerifyOTP}
-            onChangeNumber={() => setShowOTPDialog(false)}
-          />
-          {snackbar && (
-            <SnackbarAlert
-              open={Boolean(snackbar)}
-              severity={snackbar.type}
-              handleClose={() => setSnackbar(null)}
-            >
-              {snackbar.message}
-            </SnackbarAlert>
-          )}
-        </Box>
-      </Box>
-    </Container>
+      <EnterOTPDialog
+        isOpen={showOTPDialog}
+        onVerify={handleVerifyOTP}
+        onChangeNumber={() => setShowOTPDialog(false)}
+      />
+      {snackbar && (
+        <SnackbarAlert
+          open={Boolean(snackbar)}
+          severity={snackbar.type}
+          handleClose={() => setSnackbar(null)}
+        >
+          {snackbar.message}
+        </SnackbarAlert>
+      )}
+    </Box>
   );
 }

@@ -16,3 +16,8 @@ export interface SignUpFormController {
     >
   >;
 }
+
+export interface LoginFormController {
+  login(phoneNumber: string, password: string): Promise<Result<User, string>>;
+  verifyOTP(otp: string): Promise<Result<boolean, string>>;
+}
