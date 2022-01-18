@@ -8,6 +8,13 @@ import * as React from "react";
 // Add support for the sx prop for consistency with the other branches.
 const Anchor = styled("a")({});
 
+const StyledMuiLink = styled(MuiLink)`
+  :hover {
+    color: ${(props) => props.theme.palette.secondary.dark};
+    font-weight: 800;
+  }
+`;
+
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">,
     Omit<NextLinkProps, "href" | "as"> {
@@ -89,7 +96,7 @@ export const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
       }
 
       return (
-        <MuiLink
+        <StyledMuiLink
           underline="hover"
           className={className}
           href={href}
@@ -112,7 +119,7 @@ export const NavLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
     }
 
     return (
-      <MuiLink
+      <StyledMuiLink
         underline="hover"
         component={NextLinkComposed}
         linkAs={linkAs}

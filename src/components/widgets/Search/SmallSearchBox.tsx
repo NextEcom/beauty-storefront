@@ -1,15 +1,17 @@
 import { SearchOutlined } from "@mui/icons-material";
-import { Box, Button, TextField, useTheme } from "@mui/material";
+import { Box, TextField, useTheme } from "@mui/material";
 import { useTranslations } from "next-intl";
+import { useSearchWithSuggestions } from "./useSearchWithSuggestions";
 
-export function SimpleSearchBox() {
+export function SmallSearchBox() {
   const theme = useTheme();
   const t = useTranslations("Common");
+  const { query, setQuery } = useSearchWithSuggestions();
   return (
     <Box
       sx={{
         margin: "auto",
-        maxWidth: "500px",
+        maxWidth: "250px",
         borderRadius: "8px",
         overflow: "hidden",
         boxShadow: theme.shadows[1],
@@ -18,7 +20,8 @@ export function SimpleSearchBox() {
       <TextField
         placeholder={t("searchForProducts")}
         fullWidth
-        type={"search"}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
         InputProps={{
           sx: {
             height: 40,
@@ -29,21 +32,8 @@ export function SimpleSearchBox() {
               border: "none",
             },
           },
+
           endAdornment: (
-            <Button
-              color="primary"
-              variant="contained"
-              disableElevation
-              sx={{
-                px: "2rem",
-                height: "100%",
-                borderRadius: "0 8px 8px 0",
-              }}
-            >
-              {t("search")}
-            </Button>
-          ),
-          startAdornment: (
             <SearchOutlined
               sx={{
                 color: "palette.grey[600]",

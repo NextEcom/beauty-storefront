@@ -1,8 +1,8 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { LayoutConstants } from "config/app";
-import { AppContainer, Flexbox } from "../base";
+import { AppContainer, Flexbox, NavLink } from "../base";
 import { CartIconButton } from "../base/CartIconButton";
-import { SimpleSearchBox } from "./SimpleSearchBox";
+import { SmallSearchBox } from "./Search/SmallSearchBox";
 
 export type AppHeaderProps = {};
 export function AppHeader(props: AppHeaderProps) {
@@ -31,20 +31,31 @@ export function AppHeader(props: AppHeaderProps) {
           <Flexbox
             justifyContent={"space-between"}
             alignItems={"center"}
-            gap={2}
+            gap={4}
             sx={{
               width: "100%",
             }}
           >
-            <Box flex={1}>
+            <Box>
               <Typography variant="h6" noWrap component="div">
                 LOGO
               </Typography>
             </Box>
-            <Box flex={3}>
-              <SimpleSearchBox />
+            <Flexbox flex={1} gap={3}>
+              {["Face", "Body", "Hair", "Kids"].map((item) => (
+                <Box key={item}>
+                  <NavLink href={`/${item.toLowerCase().replaceAll(" ", "-")}`}>
+                    <Typography variant="subtitle1" noWrap>
+                      {item}
+                    </Typography>
+                  </NavLink>
+                </Box>
+              ))}
+            </Flexbox>
+            <Box>
+              <SmallSearchBox />
             </Box>
-            <Flexbox justifyContent={"flex-end"} gap={1.5} flex={2}>
+            <Flexbox justifyContent={"flex-end"} gap={1.5}>
               <CartIconButton />
             </Flexbox>
           </Flexbox>
